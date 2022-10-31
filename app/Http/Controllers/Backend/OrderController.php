@@ -26,10 +26,10 @@ class OrderController extends Controller
     {
         // $order = Order::all();
         // return $order;
-        $order = $this->orderservice->index();
+        // $order = $this->orderservice->index();
         // $order = (object)$order_array;
         // dd($order);
-        return view('pages.order.main', compact('order'));
+        return view('pages.order.main');
         // $order = Order::all();
         // return Datatables::of($order)->make(true);
     }
@@ -71,7 +71,7 @@ class OrderController extends Controller
     {
         switch ($id) {
             case 'get-list':
-                $order = Order::all();
+                $order = $this->orderservice->index();
                 return Datatables::of($order)->make(true);
                 break;
             default:

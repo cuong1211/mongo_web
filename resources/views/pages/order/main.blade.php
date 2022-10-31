@@ -30,7 +30,7 @@
                             </div>
                             <!--end::Search-->
                         </div>
-                        
+
                         <!--begin::Card title-->
                         <!--begin::Card toolbar-->
                         <div class="card-toolbar">
@@ -185,7 +185,7 @@
                             <!--end::Table head-->
                             <!--begin::Table body-->
                             <tbody class="fw-bold text-gray-600">
-                                {{-- @foreach ($order as $item)
+                                {{--                @foreach ($order as $item)
                                     <tr>
                                         <td>
                                             <div class="form-check form-check-sm form-check-custom form-check-solid">
@@ -397,7 +397,9 @@
     </div>
 @endsection
 @push('js')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
-@include('pages.order.js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    @include('pages.order.js')
 @endpush

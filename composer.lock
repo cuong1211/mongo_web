@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "25f7c3d214619c1817f3c0c68f34a0e4",
+    "content-hash": "ec866c7b111b3986db2ec54da367e4a5",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1022,16 +1022,16 @@
         },
         {
             "name": "jenssegers/mongodb",
-            "version": "v3.8.5",
+            "version": "v3.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jenssegers/laravel-mongodb.git",
-                "reference": "24a8fb9938f4be1fc386d548bba1dc5a5f69320c"
+                "reference": "a362df4f7fec5b91fea92b64273a531db34adfca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jenssegers/laravel-mongodb/zipball/24a8fb9938f4be1fc386d548bba1dc5a5f69320c",
-                "reference": "24a8fb9938f4be1fc386d548bba1dc5a5f69320c",
+                "url": "https://api.github.com/repos/jenssegers/laravel-mongodb/zipball/a362df4f7fec5b91fea92b64273a531db34adfca",
+                "reference": "a362df4f7fec5b91fea92b64273a531db34adfca",
                 "shasum": ""
             },
             "require": {
@@ -1061,8 +1061,8 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Jenssegers\\Mongodb\\": "src/"
+                "psr-0": {
+                    "Jenssegers\\Mongodb": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1088,7 +1088,7 @@
             ],
             "support": {
                 "issues": "https://github.com/jenssegers/laravel-mongodb/issues",
-                "source": "https://github.com/jenssegers/laravel-mongodb/tree/v3.8.5"
+                "source": "https://github.com/jenssegers/laravel-mongodb/tree/v3.8.0"
             },
             "funding": [
                 {
@@ -1100,7 +1100,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-07-14T05:14:15+00:00"
+            "time": "2020-09-30T08:58:21+00:00"
         },
         {
             "name": "laravel/framework",

@@ -17,7 +17,7 @@
         },
         columns: [
             {
-                data: 'id',
+                data: '_id',
                 render: function(data, type, row, meta) {
                     return '<div class="form-check form-check-sm form-check-custom form-check-solid">\n'+
                             '<input class="form-check-input" type="checkbox" value="'+data+'"/>\n'+
@@ -58,7 +58,7 @@
                         '\' class="menu-link px-3 btn-edit" data-bs-toggle="modal" data-bs-target="#kt_modal_add_customer">Edit</a> \n' +
                         '</div> \n' +
                         '<div class="menu-item px-3"> \n' +
-                        '<a href="#" data-id="' + row.id +
+                        '<a href="#" data-id="' + row._id +
                         '" class="menu-link px-3 btn-delete" data-kt-customer-table-filter="delete_row">Delete</a> \n' +
                         '</div> \n' +
                         '</div>';
@@ -166,7 +166,8 @@
     });
     $(document).on('click', '.btn-delete', function (e) {
         e.preventDefault();
-        let id = $(this).data('_id');
+        let id = $(this).data('id');
+        console.log($(this).data())
         $.ajax({
             url: "{{route('order.destroy','')}}" + '/' + id,
             headers: {
