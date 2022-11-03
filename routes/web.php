@@ -19,6 +19,8 @@ Route::get('/', function () {
 });
 
 Route::resource('/order',OrderController::class);
+route::resource('/product',ProductController::class);
+route::resource('/category',CategoryController::class);
 
 Auth::routes();
 

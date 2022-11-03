@@ -1,46 +1,47 @@
 <?php
 
-namespace App\Services\Order;
+namespace App\Services\Categoty;
 
-use App\Http\Requests\OrderRequest;
-use App\Models\Order;
+use App\Http\Requests\ProductRequest;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
-class OrderService
+class ProductService
 {
     public function index()
     {
-        $oder = Order::query()->get();
-        return $oder;
+        $index = Product::query()->get();
+        return $index;
     }
-    public function create(OrderRequest $request)
+    public function create(ProductRequest $request)
     {
-        $create = Order::create($request->validated());
+        $create = Product::create($request->validated());
         return $create;
     }
-    public function edit(OrderRequest $request, $id)
+    public function edit(ProductRequest $request, $id)
     {
 
         // $a = 'ObjectId';
-        // $order_old = $a."("."'".$id."'".")";
-        $order = Order::where('_id', $id)
+        // $Product_old = $a."("."'".$id."'".")";
+        $Product = Product::where('_id', $id)
             ->update([
                 'name' => $request->name,
                 'description' => $request->description,
                 'price' => $request->price,
+                'category_id' => $request->category_id,
             ]);
-        // $order = Order::find($obId)->update([
+        // $Product = Product::find($obId)->update([
         //     'name' => $request->name,
         //     'description' => $request->description,
         //     'price' => $request->price,
         // ]);
-        return $order;
+        return $Product;
     }
     public function delete($id)
     {
-        $delete = Order::where('_id', $id)
+        $delete = Product::where('_id', $id)
             ->delete();
         return $delete;
     }
