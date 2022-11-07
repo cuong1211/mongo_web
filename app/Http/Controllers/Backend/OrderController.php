@@ -100,7 +100,6 @@ class OrderController extends Controller
     public function update(Request $request, $id)
     {
         $this->orderservice->edit($request, $id);
-
         return response()->json(
             [
                 'type' => 'success',

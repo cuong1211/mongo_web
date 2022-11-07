@@ -12,4 +12,8 @@ class Category extends Model
         'name',
     ];
     protected $dates = ['created_at', 'updated_at'];
+    public function product()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

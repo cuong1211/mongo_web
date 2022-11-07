@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Services\Product\ProductService;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
+use App\Http\Requests\ProductRequest;
+use App\Models\Product;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -12,9 +17,15 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $productservice;
+    public function __construct(ProductService $productservice)
+    {
+        $this->productservice = $productservice;
+    }
     public function index()
     {
-        //
+        $cate = Category::query()->get();
+        return view('pages.product.main', compact('cate'));
     }
 
     /**
@@ -24,7 +35,6 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -33,9 +43,16 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        $this->productservice->create($request);
+        return response()->json(
+            [
+                'type' => 'success',
+                'title' => 'Thêm thành công'
+            ],
+            200
+        );
     }
 
     /**
@@ -46,7 +63,15 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        switch ($id) {
+            case 'get-list':
+                $product = $this->productservice->index();
+                return Datatables::of($product)
+                    ->make(true);
+                break;
+            default:
+                break;
+        }
     }
 
     /**
@@ -67,9 +92,16 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
-        //
+        $this->productservice->edit($request, $id);
+        return response()->json(
+            [
+                'type' => 'success',
+                'title' => 'Sửa thành công'
+            ],
+            200
+        );
     }
 
     /**

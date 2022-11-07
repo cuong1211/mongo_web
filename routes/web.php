@@ -3,6 +3,8 @@
 use App\Http\Controllers\Backend\OrderController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,11 +19,24 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('pages.main');
 });
-
-Route::resource('/order',OrderController::class);
-route::resource('/product',ProductController::class);
-route::resource('/category',CategoryController::class);
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    Route::get('/', function () {
+        return view('backend.main');
+    });
+    Route::resource('categories', CategoryController::class);
+    Route::resource('products', ProductController::class);
+    Route::resource('orders', OrderController::class);
+});
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/home', function () {
+    return view('pages.frontend.index');
+});
+route::get('/product', function () {
+    return view('pages.frontend.product');
+})->name('frontend.product');
+route::get('/cart',[App\Http\Controllers\Frontend\CartController::class,'index'])->name('cart.index');
+route::get('checkout',[App\Http\Controllers\Frontend\CartController::class,'getCheckout'])->name('cart.checkout');

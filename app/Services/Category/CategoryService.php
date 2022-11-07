@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Categoty;
+namespace App\Services\Category;
 
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;

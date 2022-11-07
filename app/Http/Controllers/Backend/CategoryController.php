@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Services\Category\CategoryService;
 use App\Http\Requests\CategoryRequest;
+use App\Services\Category\CategoryService;
+use App\Models\Category;
+use Yajra\Datatables\Datatables;
 
 class CategoryController extends Controller
 {
@@ -21,7 +23,7 @@ class CategoryController extends Controller
     }
     public function index()
     {
-        //
+        return view('pages.category.main');
     }
 
     /**
@@ -40,9 +42,17 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        //
+        // $data = $request->validate();
+        $this->categoryservice->create($request);
+        return response()->json(
+            [
+                'type' => 'success',
+                'title' => 'Thêm thành công'
+            ],
+            200
+        );
     }
 
     /**
@@ -53,7 +63,14 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        switch ($id) {
+            case 'get-list':
+                $cate = $this->categoryservice->index();
+                return Datatables::of($cate)->make(true);
+                break;
+            default:
+                break;
+        }
     }
 
     /**

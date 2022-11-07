@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Categoty;
+namespace App\Services\Product;
 
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
@@ -12,7 +12,7 @@ class ProductService
 {
     public function index()
     {
-        $index = Product::query()->get();
+        $index = Product::query()->with('category')->get();
         return $index;
     }
     public function create(ProductRequest $request)
@@ -22,9 +22,6 @@ class ProductService
     }
     public function edit(ProductRequest $request, $id)
     {
-
-        // $a = 'ObjectId';
-        // $Product_old = $a."("."'".$id."'".")";
         $Product = Product::where('_id', $id)
             ->update([
                 'name' => $request->name,
