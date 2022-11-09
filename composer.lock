@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1828ab794f69d045cd29331faf3e9e88",
+    "content-hash": "7be2d1ebbcd3b973af63423534be6c27",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1541,16 +1541,16 @@
         },
         {
             "name": "laravel/ui",
-            "version": "v3.4.6",
+            "version": "3.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/ui.git",
-                "reference": "65ec5c03f7fee2c8ecae785795b829a15be48c2c"
+                "reference": "9ee902df67b7d1c79d72a249d99ccca4524dff54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/ui/zipball/65ec5c03f7fee2c8ecae785795b829a15be48c2c",
-                "reference": "65ec5c03f7fee2c8ecae785795b829a15be48c2c",
+                "url": "https://api.github.com/repos/laravel/ui/zipball/9ee902df67b7d1c79d72a249d99ccca4524dff54",
+                "reference": "9ee902df67b7d1c79d72a249d99ccca4524dff54",
                 "shasum": ""
             },
             "require": {
@@ -1563,6 +1563,7 @@
             "require-dev": {
                 "orchestra/testbench": "^6.23|^7.0"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1596,9 +1597,9 @@
                 "ui"
             ],
             "support": {
-                "source": "https://github.com/laravel/ui/tree/v3.4.6"
+                "source": "https://github.com/laravel/ui/tree/3.x"
             },
-            "time": "2022-05-20T13:38:08+00:00"
+            "time": "2022-06-08T09:53:51+00:00"
         },
         {
             "name": "lcobucci/clock",

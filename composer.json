@@ -13,7 +13,7 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^3.4",
+        "laravel/ui": "~3.5",
         "mongodb/mongodb": "^1.12",
         "tymon/jwt-auth": "*",
         "yajra/laravel-datatables-oracle": "^9.21"

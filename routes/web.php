@@ -19,13 +19,13 @@ use App\Http\Controllers\Backend\ProductController;
 Route::get('/', function () {
     return view('pages.main');
 });
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'admin'], function () {
     Route::get('/', function () {
-        return view('backend.main');
-    });
-    Route::resource('categories', CategoryController::class);
-    Route::resource('products', ProductController::class);
-    Route::resource('orders', OrderController::class);
+        return view('pages.main');
+    })->name('admin');
+    Route::resource('category', CategoryController::class);
+    Route::resource('product', ProductController::class);
+    Route::resource('order', OrderController::class);
 });
 
 Auth::routes();
