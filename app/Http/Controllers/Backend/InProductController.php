@@ -45,9 +45,17 @@ class InProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(InProductRequest $request)
     {
-        //
+        $data = $request->validated();
+        $this->inproductservice->create($data);
+        return response()->json(
+            [
+                'type' => 'success',
+                'title' => 'Thêm thành công'
+            ],
+            200
+        );
     }
 
     /**

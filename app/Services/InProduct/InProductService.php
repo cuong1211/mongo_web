@@ -12,12 +12,12 @@ class InProductService
 {
     public function index()
     {
-        $oder = in_product::query()->get();
+        $oder = in_product::query()->with('company','product')->get();
         return $oder;
     }
-    public function create(InProductRequest $request)
+    public function create($data)
     {
-        $create = in_product::create($request->validated());
+        $create = in_product::create($data);
         return $create;
     }
     public function edit(InProductRequest $request, $id)

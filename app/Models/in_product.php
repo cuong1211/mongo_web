@@ -9,11 +9,10 @@ class in_product extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
-        'price',
         'quantity',
         'product_id',
         'company_id',
+        'total',
     ];
     protected $dates = ['created_at', 'updated_at'];
     public function product()

@@ -23,25 +23,25 @@
             },
             {
                 
-                data: 'name',
+                data: 'product.name',
                 render: function(data, type, row, meta) {
                     return data;
                 }
             },
             {
-                data: 'phone',
+                data: 'company.name',
                 render: function(data, type, row, meta) {
                     return data;
                 }
             },
             {
-                data: 'email',
+                data: 'quantity',
                 render: function(data, type, row, meta) {
                     return data;
                 }
             },
             {
-                data: 'address',
+                data: 'total',
                 render: function(data, type, row, meta) {
                     return data;
                 }
@@ -94,14 +94,13 @@
         modal.find('input[name=id]').val('');
         modal.trigger('reset');
         $('.alert-danger').hide();
-        modal.resetFrom();
         // $('#kt_modal_add_customer_form').modal('show'); 
     });
     $('#kt_modal_add_customer_form').on('submit', function (e){
         e.preventDefault();
         let data = $(this).serialize(),
             type = 'POST',
-            url = "{{route('company.store')}}",
+            url = "{{route('in_product.store')}}",
             id = $('form#kt_modal_add_customer_form input[name=id]').val();
         if (parseInt(id)) {
             console.log('edit');

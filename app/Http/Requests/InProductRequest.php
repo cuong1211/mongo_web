@@ -23,13 +23,15 @@ class InProductRequest extends FormRequest
      */
     public function rules()
     {
-        return ['name' => 'required|min:3|max:50'] + ($this->isMethod('POST') ? $this->store() : $this->update());
+        return ['name' => 'min:3|max:50'] + ($this->isMethod('POST') ? $this->store() : $this->update());
     }
     protected function store()
     {
         return [
-        'name' => 'required|unique:in_products|max:255',
-        
+        'product_id' => 'required',
+        'company_id' => 'required',
+        'quantity' => 'required',
+        'total' => 'required',
         ];
     }
 

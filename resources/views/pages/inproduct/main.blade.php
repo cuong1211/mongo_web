@@ -175,7 +175,6 @@
                                                 value="1" />
                                         </div>
                                     </th>
-                                    <th class="min-w-125px">Name</th>
                                     <th class="min-w-125px">Product</th>
                                     <th class="min-w-125px">Company</th>
                                     <th class="min-w-125px">Quantity</th>

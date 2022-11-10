@@ -46,17 +46,19 @@
                             <label class="fs-6 fw-bold mb-2">Product</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <select name="product_id" id="select_cateid" autofocus
-                                data-placeholder="Select a Country..." class="form-select form-select-solid value"
-                                tabindex="-1" aria-hidden="true">
+                            <select name="product_id" id="select_price" autofocus data-placeholder="Select a Country..."
+                                class="form-select form-select-solid value" tabindex="-1" aria-hidden="true">
                                 @foreach ($product as $item)
-                                    <option id="value" value="{{ $item->id }}">{{ $item->name }}</option>
+                                    <option id="value" value="{{ $item->id }}"
+                                        data-description="{{ $item->price }}">
+                                        {{ $item->name }}</option>
                                 @endforeach
                             </select>
                             <!--end::Input-->
                         </div>
                         <label class="fs-6 fw-bold mb-2">Price</label>
-                        <input type="text" class="form-control form-control-solid test" placeholder="" disabled value=""></td>
+                        <input type="text" id="price" class="form-control form-control-solid test" placeholder=""
+                            readonly></td>
                         <!--end::Input group-->
                         <!--begin::Input group-->
                         <div class="fv-row mb-7">
@@ -77,11 +79,13 @@
                             <label class="fs-6 fw-bold mb-2">Quantity</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="number" class="form-control form-control-solid" placeholder=""
+                            <input type="number" id="quantity" class="form-control form-control-solid" placeholder=""
                                 name="quantity" />
                             <!--end::Input-->
                         </div>
-                        <input type="hidden" id="total"name="total" value="">
+                        <label class="fs-6 fw-bold mb-2">Total</label>
+                        <input type="text" id="total_money" class="form-control form-control-solid" placeholder=""
+                            name="total" readonly />
                         <!--end::Input group-->
                     </div>
                     <!--end::Scroll-->
@@ -108,27 +112,25 @@
 </div>
 @push('jscustom')
     <script>
-        function findTotal() {
-            const fees = document.querySelectorAll(".money");
-            const total = document.querySelector("#total");
-            let sum = 0;
+        // $(document).ready(function() {
+        //     $('#select_price').change(function() {
+        //         // $('#quantity').keyup(function() {
+        //         //     var value1 = parseFloat($('#quantity').val()) || 0
+        //         // });
+        //         var price = $(this).find(':selected').data('description');
+        //         $('#price').val(price);
+        //     });
+        // });
 
-            fees.forEach(fee => {
-                if (fee.valueAsNumber) {
-                    sum += fee.valueAsNumber;
-                }
+        $('#select_price').change(function() {
+            var element = $(this).find('option:selected');
+            var desc = element.data("description");
+            $("#price").val(desc);
+            $('#quantity').on('keyup', function(e) {
+                quantity = e.target.value
+                // console.log(a)
+                $('#total_money').val(desc * quantity) ;
             });
-            total.value = sum;
-
-        }
-        const selectElement = document.querySelector('.value');
-        const money = document.querySelector('.test');
-
-        selectElement.addEventListener('change', (event) => {
-            money.value = selectElement.index(event.target.value);
-            console.log(money.value);
         });
-        let a = JSON.parse('@json($product)');
-        console.log(a);
     </script>
 @endpush
