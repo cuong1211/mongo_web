@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\CompanyController;
+use App\Http\Controllers\Backend\InProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +28,10 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('category', CategoryController::class);
     Route::resource('product', ProductController::class);
     Route::resource('order', OrderController::class);
+    Route::resource('company', CompanyController::class);
+    Route::resource('receipt', ReceiptController::class);
+    Route::resource('in_product', InProductController::class);
+    Route::resource('user', UserController::class);
 });
 
 Auth::routes();

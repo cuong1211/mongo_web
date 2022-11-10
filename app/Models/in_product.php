@@ -5,22 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class Product extends Model
+class in_product extends Model
 {
     use HasFactory;
     protected $fillable = [
         'name',
-        'description',
         'price',
-        'category_id',
+        'quantity',
+        'product_id',
+        'company_id',
     ];
     protected $dates = ['created_at', 'updated_at'];
-    public function category()
+    public function product()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(product::class, 'product_id');
     }
-    public function in_products()
+    public function company()
     {
-        return $this->hasMany(in_product::class);
+        return $this->belongsTo(company::class, 'company_id');
     }
 }

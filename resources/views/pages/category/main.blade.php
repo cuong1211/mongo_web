@@ -378,10 +378,7 @@
         <!--end::Post-->
     </div>
 @endsection
-@push('js')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
-        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+@push('jscustom')
     <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
     @include('pages.category.js')
 @endpush

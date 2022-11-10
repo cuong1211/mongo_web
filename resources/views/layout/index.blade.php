@@ -42,7 +42,9 @@ License: For each use you must have a valid license purchased only from above li
                 </script>
                 <!--begin::Javascript-->
                 <!--begin::Global Javascript Bundle(used by all pages)-->
+                @yield('js')
                 @stack('js')
+                @stack('jscustom')
                 <!--end::Page Custom Javascript-->
                 <!--end::Javascript-->
 </body>
