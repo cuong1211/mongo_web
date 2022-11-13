@@ -13,6 +13,7 @@ class Product extends Model
         'description',
         'price',
         'category_id',
+        'img',
     ];
     protected $dates = ['created_at', 'updated_at'];
     public function category()

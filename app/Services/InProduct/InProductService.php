@@ -17,6 +17,9 @@ class InProductService
     }
     public function create($data)
     {
+        $fileName = time().$data->file('img')->getClientOriginalName();
+        $path = $data->file('img')->storeAs('public/images',$fileName);
+        $requestData["img"] = $fileName;
         $create = in_product::create($data);
         return $create;
     }
@@ -25,6 +28,7 @@ class InProductService
 
         // $a = 'ObjectId';
         // $InProduct_old = $a."("."'".$id."'".")";
+
         $InProduct = in_product::where('_id', $id)
             ->update([
                 'name' => $request->name,

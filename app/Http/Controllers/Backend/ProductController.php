@@ -45,7 +45,8 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $this->productservice->create($request);
+        $data = $request->validated();
+        $this->productservice->create($data);
         return response()->json(
             [
                 'type' => 'success',
