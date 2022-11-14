@@ -6,6 +6,7 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Intervention\Image\Facades\Image;
 
 
 class ProductService
@@ -15,13 +16,25 @@ class ProductService
         $index = Product::query()->with('category')->get();
         return $index;
     }
-    public function create(ProductRequest $request)
+    public function create($data)
     {
-        $create = Product::create($request->validated());
+        if (isset($data['img'])) {
+            $file = $data['img'];
+            $fileName = $file->getClientOriginalName();
+            Image::make($file)->resize(491,246)->save(public_path('images/'.$fileName)); 
+            $create = Product::create([
+                'name' => $data['name'],
+                'category_id' => $data['category_id'],
+                'price' => $data['price'],
+                'img' => $fileName,
+                'description' => $data['description'],
+            ]);
+        }
         return $create;
     }
     public function edit(ProductRequest $request, $id)
     {
+
         $Product = Product::where('_id', $id)
             ->update([
                 'name' => $request->name,

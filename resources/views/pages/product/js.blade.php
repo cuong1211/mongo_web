@@ -98,6 +98,7 @@
     });
     $('#kt_modal_add_customer_form').on('submit', function (e){
         e.preventDefault();
+        var formData = new FormData(this);
         let data = $(this).serialize(),
             type = 'POST',
             url = "{{route('product.store')}}",
@@ -113,7 +114,9 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             type: type,
-            data: data,
+            data: formData,
+            contentType: false,
+            processData: false,
             success: function(data) {
                 notification(data.type, data.title, data.content);
                 if (data.type == 'success') {

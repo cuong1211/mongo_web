@@ -23,15 +23,16 @@ class ProductRequest extends FormRequest
      */
     public function rules()
     {
-        return ['name' => 'required|min:3|max:50'] + ($this->isMethod('POST') ? $this->store() : $this->update());
+        return ['name' => 'max:50'] + ($this->isMethod('POST') ? $this->store() : $this->update());
     }
     protected function store()
     {
         return [
-            'name' => 'required|unique:products|max:255',
+            'name' => 'nullable| unique:products|max:255',
             'description' => 'nullable',
-            'price' => 'required',
-            'category_id' => 'required',
+            'price' => 'nullable',
+            'category_id' => 'nullable',
+            'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 

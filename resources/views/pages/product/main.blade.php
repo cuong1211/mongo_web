@@ -258,7 +258,7 @@
                         <!--begin::Modal content-->
                         <div class="modal-content">
                             <!--begin::Form-->
-                            <form class="form" id="kt_modal_add_customer_form">
+                            <form class="form" id="kt_modal_add_customer_form" enctype="multipart/form-data">
                                 @csrf
                                 <!--begin::Modal header-->
                                 <div class="modal-header" id="kt_modal_add_customer_header">
@@ -297,7 +297,6 @@
                                         data-kt-scroll-wrappers="#kt_modal_add_customer_scroll"
                                         data-kt-scroll-offset="300px">
                                         <input type="hidden" name="id" value="">
-                                        <input type="hidden" name="orderId" value="">
                                         <!--begin::Input group-->
                                         <div class="fv-row mb-7">
                                             <!--begin::Label-->
@@ -344,6 +343,13 @@
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
+                                        <div class="fv-row mb-7">
+                                            <label class="fs-6 fw-bold mb-2">Image</label>
+                                            <br>
+                                            <input type="file" class="form-control form-control-solid"  onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])" name="img">
+                                            <br>
+                                            <img id="blah" width="491" height="246"/>
+                                        </div>
                                     </div>
                                     <!--end::Scroll-->
                                 </div>
