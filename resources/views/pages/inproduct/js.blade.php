@@ -12,17 +12,27 @@
             url: "{{ route('in_product.show', 'get-list') }}",
             type: 'GET'
         },
-        columns: [
-            {
-                data: '_id',
+        data: '_id',
+        columns: [{
                 render: function(data, type, row, meta) {
-                    return '<div class="form-check form-check-sm form-check-custom form-check-solid">\n'+
-                            '<input class="form-check-input" type="checkbox" value="'+data+'"/>\n'+
+                    return '<div class="form-check form-check-sm form-check-custom form-check-solid">\n' +
+                        '<input class="form-check-input" type="checkbox" value="' + data + '"/>\n' +
                         '</div>';
                 }
             },
             {
-                
+                render: function(data, type, row, meta) {
+                    return '<div class="symbol symbol-circle symbol-50px overflow-hidden me-3">\n' +
+                        '<a href = "" >\n' +
+                        '<div class = "symbol-label" >\n' +
+                        '<img src = "assets/media/avatars/150-1.jpg" alt = "Emma Smith" class = "w-100" >\n' +
+                        '</div>\n ' +
+                        '</a>\n' +
+                        '</div>';
+                }
+            },
+            {
+
                 data: 'product.name',
                 render: function(data, type, row, meta) {
                     return data;
@@ -73,7 +83,7 @@
     dt.on('draw', function() {
         KTMenu.createInstances();
     });
-    $(document).on('click', '.btn-edit', function (e) {
+    $(document).on('click', '.btn-edit', function(e) {
         console.log('edit')
         e.preventDefault();
         let data = $(this).data('data');
@@ -86,7 +96,7 @@
         modal.find('input[name=address]').val(data.address);
         // $('#kt_modal_add_customer_form').modal('show'); 
     });
-    $(document).on('click', '.btn-add', function (e) {
+    $(document).on('click', '.btn-add', function(e) {
         console.log('add')
         e.preventDefault();
         let modal = $('#kt_modal_add_customer_form');
@@ -96,21 +106,27 @@
         $('.alert-danger').hide();
         // $('#kt_modal_add_customer_form').modal('show'); 
     });
-    $('#kt_modal_add_customer_form').on('submit', function (e){
+    var formData = new FormData($('#kt_modal_add_customer_form')[0]);
+    $('#kt_modal_add_customer_form').on('submit', function(e) {
         e.preventDefault();
         let data = $(this).serialize(),
             type = 'POST',
-            url = "{{route('in_product.store')}}",
+            url = "{{ route('in_product.store') }}",
+
             id = $('form#kt_modal_add_customer_form input[name=id]').val();
         if (parseInt(id)) {
             console.log('edit');
             type = 'PUT';
             url = url + '/' + id;
-            }
+        }
         $.ajax({
             url: url,
+            enctype: 'multipart/form-data',
             type: type,
             data: data,
+            processData: false,
+            contentType: false,
+            data: formData,
             success: function(data) {
                 notification(data.type, data.title, data.content);
                 if (data.type == 'success') {
@@ -128,12 +144,12 @@
             }
         });
     });
-    $(document).on('click', '.btn-delete', function (e) {
+    $(document).on('click', '.btn-delete', function(e) {
         e.preventDefault();
         let id = $(this).data('id');
         console.log($(this).data())
         $.ajax({
-            url: "{{route('product.destroy','')}}" + '/' + id,
+            url: "{{ route('product.destroy', '') }}" + '/' + id,
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
@@ -155,5 +171,4 @@
             }
         });
     });
-
 </script>

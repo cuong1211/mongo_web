@@ -49,7 +49,8 @@ class ProductController extends Controller
         return response()->json(
             [
                 'type' => 'success',
-                'title' => 'Thêm thành công'
+                'title' => 'success',
+                'content' => 'Thêm thành công'
             ],
             200
         );
@@ -98,7 +99,8 @@ class ProductController extends Controller
         return response()->json(
             [
                 'type' => 'success',
-                'title' => 'Sửa thành công'
+                'title' => 'success',
+                'content' => 'Sửa thành công'
             ],
             200
         );
@@ -112,6 +114,14 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->productservice->delete($id);
+        return response()->json(
+            [
+                'type' => 'success',
+                'title' => 'success',
+                'content' => 'Xóa thành công'
+            ],
+            200
+        );
     }
 }

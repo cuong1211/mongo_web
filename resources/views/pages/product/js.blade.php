@@ -115,8 +115,8 @@
             type: type,
             data: data,
             success: function(data) {
+                notification(data.type, data.title, data.content);
                 if (data.type == 'success') {
-                    alert(data.title);
                     dt.ajax.reload(null, false);
                     $('#kt_modal_add_customer_form').trigger('reset');
                     $('#kt_modal_add_customer').modal('hide');
@@ -139,8 +139,8 @@
             },
             type: 'DELETE',
             success: function(data) {
+                notification(data.type, data.title, data.content);
                 if (data.type == 'success') {
-                    alert(data.title);
                     dt.ajax.reload(null, false);
                 }
             },

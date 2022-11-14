@@ -52,7 +52,8 @@ class InProductController extends Controller
         return response()->json(
             [
                 'type' => 'success',
-                'title' => 'Thêm thành công'
+                'title' => 'success',
+                'content' => 'Thêm thành công'
             ],
             200
         );

@@ -175,6 +175,7 @@
                                                 value="1" />
                                         </div>
                                     </th>
+                                    <th class="min-w-125px">Image</th>
                                     <th class="min-w-125px">Product</th>
                                     <th class="min-w-125px">Company</th>
                                     <th class="min-w-125px">Quantity</th>
@@ -207,5 +208,8 @@
 @endsection
 @push('jscustom')
     <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
+		<!--end::Page Vendors Javascript-->
+		<!--begin::Page Custom Javascript(used by this page)-->
+		<script src="assets/js/custom/apps/user-management/users/list/table.js"></script>
     @include('pages.inproduct.js')
 @endpush

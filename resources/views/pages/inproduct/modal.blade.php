@@ -4,7 +4,7 @@
         <!--begin::Modal content-->
         <div class="modal-content">
             <!--begin::Form-->
-            <form class="form" id="kt_modal_add_customer_form">
+            <form class="form" id="kt_modal_add_customer_form" enctype="multipart/form-data">
                 @csrf
                 <!--begin::Modal header-->
                 <div class="modal-header" id="kt_modal_add_customer_header">
@@ -87,6 +87,13 @@
                         <input type="text" id="total_money" class="form-control form-control-solid" placeholder=""
                             name="total" readonly />
                         <!--end::Input group-->
+                        <div class="form-group">
+                            <label for="example-date">HÌNH ẢNH</label>
+                            <br>
+                            <input type="file"  onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])" name="image">
+                            <br>
+                            <img id="blah" width="491" height="246"/>
+                        </div>
                     </div>
                     <!--end::Scroll-->
                 </div>
