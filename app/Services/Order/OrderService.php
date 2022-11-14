@@ -12,12 +12,12 @@ class OrderService
 {
     public function index()
     {
-        $oder = Order::query()->get();
+        $oder = Order::query()->with('product')->get();
         return $oder;
     }
-    public function create(OrderRequest $request)
+    public function create($data)
     {
-        $create = Order::create($request->validated());
+        $create = Order::create($data);
         return $create;
     }
     public function edit(OrderRequest $request, $id)

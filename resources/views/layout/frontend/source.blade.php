@@ -30,7 +30,7 @@
 <!-- responsive -->
 <link rel="stylesheet" href="assets/css/responsive.css">
 
-@push('scripts')
+@section('scripts')
     <script src="assets/js/jquery-1.11.3.min.js"></script>
     <!-- bootstrap -->
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
@@ -50,4 +50,4 @@
     <script src="assets/js/sticker.js"></script>
     <!-- main js -->
     <script src="assets/js/main.js"></script>
-@endpush
+@endsection

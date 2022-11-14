@@ -21,7 +21,7 @@ class ProductService
         if (isset($data['img'])) {
             $file = $data['img'];
             $fileName = $file->getClientOriginalName();
-            Image::make($file)->resize(491,246)->save(public_path('images/'.$fileName)); 
+            Image::make($file)->resize(261,261)->save(public_path('images/'.$fileName)); 
             $create = Product::create([
                 'name' => $data['name'],
                 'category_id' => $data['category_id'],

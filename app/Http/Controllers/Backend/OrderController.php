@@ -51,14 +51,9 @@ class OrderController extends Controller
      */
     public function store(OrderRequest $request)
     {
-        $this->orderservice->create($request);
-        return response()->json(
-            [
-                'type' => 'success',
-                'title' => 'Thêm thành công'
-            ],
-            200
-        );
+        $data = $request->validated();
+        $this->orderservice->create($data);
+        return "success";
     }
 
     /**

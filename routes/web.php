@@ -7,6 +7,9 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CompanyController;
 use App\Http\Controllers\Backend\InProductController;
+use App\Http\Controllers\Backend\StatisticalController;
+use App\Http\Controllers\Frontend\FrontendController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +35,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('receipt', ReceiptController::class);
     Route::resource('in_product', InProductController::class);
     Route::resource('user', UserController::class);
+    route::group(['prefix' => 'statistic'], function () {
+        route::get('product', [StatisticalController::class, 'Product'])->name('statistic.product');
+    });
 });
 
 Auth::routes();
@@ -41,8 +47,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/home', function () {
     return view('pages.frontend.index');
 });
-route::get('/product', function () {
-    return view('pages.frontend.product');
-})->name('frontend.product');
+route::get('/product',[FrontendController::class,'getProduct'])->name('frontend.product');
 route::get('/cart',[App\Http\Controllers\Frontend\CartController::class,'index'])->name('cart.index');
-route::get('checkout',[App\Http\Controllers\Frontend\CartController::class,'getCheckout'])->name('cart.checkout');
+route::get('checkout/{id}',[App\Http\Controllers\Frontend\CartController::class,'getCheckout'])->name('cart.checkout');
+// route::post('/Order',[FrontendController::class,'postOrder'])->name('order.post');

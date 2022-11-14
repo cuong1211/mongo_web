@@ -176,8 +176,13 @@
                                         </div>
                                     </th>
                                     <th class="min-w-125px">Name</th>
-                                    <th class="min-w-125px">Description</th>
-                                    <th class="min-w-125px">Price</th>
+                                    <th class="min-w-125px">Email</th>
+                                    <th class="min-w-125px">Address</th>
+                                    <th class="min-w-125px">Phone</th>
+                                    <th class="min-w-125px">Note</th>
+                                    <th class="min-w-125px">Product</th>
+                                    <th class="min-w-125px">Total</th>
+                                    <th class="min-w-125px">Date</th>
                                     <th class="text-end min-w-70px">Actions</th>
                                 </tr>
                                 <!--end::Table row-->

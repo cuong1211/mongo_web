@@ -50,7 +50,8 @@
     <!-- end copyright -->
 
     <!-- jquery -->
-    @stack('scripts')
+    @yield('scripts')
+    @stack('jsfrontend')
 
 </body>
 

@@ -32,7 +32,8 @@ class CartController extends Controller
         Cart::add($data);
         return redirect()->route('cart.index');
     }
-    public function getCheckout(){
-        return view('pages.frontend.checkout');
+    public function getCheckout($id){
+        $product = Product::find($id);
+        return view('pages.frontend.checkout',compact('product'));
     }
 }

@@ -10,8 +10,18 @@ class Order extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'description',
-        'price',
+        'email',
+        'address',
+        'phone',
+        'note',
+        'product_id',
+        'quantity',
+        'total',
+        'date',
     ];
     protected $dates = ['created_at', 'updated_at'];
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
+    }
 }

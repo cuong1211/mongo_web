@@ -18,12 +18,6 @@ class InProductService
     }
     public function create($data)
     {
-        dd($data);
-        if($data->hasFile('image')){
-            $file = $data->file('image');
-            $name = $file->getClientOriginalName();
-            Image::make($file)->resize(300,500)->save(public_path('backend/uploads/cake/'.$name)); 
-        }
         $create = in_product::create($data);
         return $create;
     }
