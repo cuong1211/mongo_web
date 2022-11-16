@@ -87,13 +87,6 @@
                         <input type="text" id="total_money" class="form-control form-control-solid" placeholder=""
                             name="total" readonly />
                         <!--end::Input group-->
-                        <div class="form-group">
-                            <label for="example-date">HÌNH ẢNH</label>
-                            <br>
-                            <input type="file"  onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])" name="image">
-                            <br>
-                            <img id="blah" width="491" height="246"/>
-                        </div>
                     </div>
                     <!--end::Scroll-->
                 </div>
@@ -119,24 +112,15 @@
 </div>
 @push('jscustom')
     <script>
-        // $(document).ready(function() {
-        //     $('#select_price').change(function() {
-        //         // $('#quantity').keyup(function() {
-        //         //     var value1 = parseFloat($('#quantity').val()) || 0
-        //         // });
-        //         var price = $(this).find(':selected').data('description');
-        //         $('#price').val(price);
-        //     });
-        // });
-
         $('#select_price').change(function() {
             var element = $(this).find('option:selected');
             var desc = element.data("description");
             $("#price").val(desc);
+            // $('#total_money').val(desc);
             $('#quantity').on('keyup', function(e) {
                 quantity = e.target.value
                 // console.log(a)
-                $('#total_money').val(desc * quantity) ;
+                $('#total_money').val(desc * quantity);
             });
         });
     </script>

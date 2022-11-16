@@ -15,43 +15,24 @@
             url: "{{ route('order.show', 'get-list') }}",
             type: 'GET'
         },
-        columns: [
-            {
+        columns: [{
                 data: '_id',
                 render: function(data, type, row, meta) {
-                    return '<div class="form-check form-check-sm form-check-custom form-check-solid">\n'+
-                            '<input class="form-check-input" type="checkbox" value="'+data+'"/>\n'+
+                    return '<div class="form-check form-check-sm form-check-custom form-check-solid">\n' +
+                        '<input class="form-check-input" type="checkbox" value="' + data + '"/>\n' +
                         '</div>';
                 }
             },
             {
-                
+
                 data: 'name',
                 render: function(data, type, row, meta) {
                     return data;
                 }
             },
             {
-                
-                data: 'email',
-                render: function(data, type, row, meta) {
-                    return data;
-                }
-            },    {
-                
-                data: 'address',
-                render: function(data, type, row, meta) {
-                    return data;
-                }
-            },    {
-                
+
                 data: 'phone',
-                render: function(data, type, row, meta) {
-                    return data;
-                }
-            },
-            {
-                data: 'note',
                 render: function(data, type, row, meta) {
                     return data;
                 }
@@ -75,6 +56,20 @@
                 }
             },
             {
+                data: 'status',
+                render: function(data, type, row, meta) {
+                    if(data == 0){
+                        return '<span class="label label-lg font-weight-bold label-light-danger label-inline">Cancel</span>';
+                    }else if(data == 1){
+                        return '<span class="label label-lg font-weight-bold label-light-success label-inline">Confrim</span>';
+                    }else if(data == 2){
+                        return '<span class="label label-lg font-weight-bold label-light-warning label-inline">Pending</span>';
+                    }
+
+
+                }
+            },
+            {
                 data: null,
                 className: 'text-end',
                 render: function(data, type, row, meta) {
@@ -85,6 +80,10 @@
                         '</svg> \n' +
                         '</span> \n' +
                         '<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true"> \n' +
+                        '<div class="menu-item px-3"> \n' +
+                        '<a href="" data-data=\'' + JSON.stringify(row) +
+                        '\' class="menu-link px-3 btn-status" data-bs-toggle="modal" data-bs-target="#kt_modal_status">Status</a> \n' +
+                        '</div> \n' +
                         '<div class="menu-item px-3"> \n' +
                         '<a href="" data-data=\'' + JSON.stringify(row) +
                         '\' class="menu-link px-3 btn-edit" data-bs-toggle="modal" data-bs-target="#kt_modal_add_customer">Edit</a> \n' +
@@ -101,7 +100,16 @@
     dt.on('draw', function() {
         KTMenu.createInstances();
     });
-    $(document).on('click', '.btn-edit', function (e) {
+    $(document).on('click','.btn-status',function(e){
+        e.preventDefault();
+        var data = $(this).data('data');
+        console.log(data);
+        let modal = $('#kt_modal_add_customer_form');
+        modal.find('input[name="id"]').val(data._id);
+        modal.find('input[name="name"]').val(data.name);
+        modal.find('select[name="status"]').val(data.status);
+    });
+    $(document).on('click', '.btn-edit', function(e) {
         console.log('edit')
         e.preventDefault();
         let data = $(this).data('data');
@@ -113,7 +121,7 @@
         modal.find('input[name=price]').val(data.price);
         // $('#kt_modal_add_customer_form').modal('show'); 
     });
-    $(document).on('click', '.btn-add', function (e) {
+    $(document).on('click', '.btn-add', function(e) {
         console.log('add')
         e.preventDefault();
         let modal = $('#kt_modal_add_customer_form');
@@ -122,17 +130,17 @@
         modal.trigger('reset');
         // $('#kt_modal_add_customer_form').modal('show'); 
     });
-    $('#kt_modal_add_customer_form').on('submit', function (e){
+    $('#kt_modal_add_customer_form').on('submit', function(e) {
         e.preventDefault();
         let data = $(this).serialize(),
             type = 'POST',
-            url = "{{route('order.store')}}",
+            url = "{{ route('order.store') }}",
             id = $('form#kt_modal_add_customer_form input[name=id]').val();
         if (parseInt(id)) {
             console.log('edit');
             type = 'PUT';
             url = url + '/' + id;
-            }
+        }
         $.ajax({
             url: url,
             headers: {
@@ -154,12 +162,12 @@
             }
         });
     });
-    $(document).on('click', '.btn-delete', function (e) {
+    $(document).on('click', '.btn-delete', function(e) {
         e.preventDefault();
         let id = $(this).data('id');
         console.log($(this).data())
         $.ajax({
-            url: "{{route('order.destroy','')}}" + '/' + id,
+            url: "{{ route('order.destroy', '') }}" + '/' + id,
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
@@ -175,12 +183,12 @@
             }
         });
     });
-    function printErrorMsg (msg) {
-            $(".print-error-msg").find("ul").html('');
-            $(".print-error-msg").css('display','block');
-            $.each( msg, function( key, value ) {
-                $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
-            });
-        }
 
+    function printErrorMsg(msg) {
+        $(".print-error-msg").find("ul").html('');
+        $(".print-error-msg").css('display', 'block');
+        $.each(msg, function(key, value) {
+            $(".print-error-msg").find("ul").append('<li>' + value + '</li>');
+        });
+    }
 </script>

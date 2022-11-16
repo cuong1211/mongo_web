@@ -98,7 +98,16 @@ class InProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validated();
+        $this->inproductservice->edit($data, $id);
+        return response()->json(
+            [
+                'type' => 'success',
+                'title' => 'success',
+                'content' => 'Sửa thành công'
+            ],
+            200
+        );
     }
 
     /**
@@ -109,6 +118,14 @@ class InProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->inproductservice->delete($id);
+        return response()->json(
+            [
+                'type' => 'success',
+                'title' => 'success',
+                'content' => 'Xóa thành công'
+            ],
+            200
+        );
     }
 }

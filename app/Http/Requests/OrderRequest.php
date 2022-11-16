@@ -38,6 +38,7 @@ class OrderRequest extends FormRequest
         'quatity '=> 'nullable|numeric',
         'total' => 'required',
         'date' => 'required',
+        'status' => 'required',
         ];
     }
 

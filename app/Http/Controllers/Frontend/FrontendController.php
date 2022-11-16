@@ -19,16 +19,7 @@ class FrontendController extends Controller
     public function getProduct()
     {
 
-        $product = Product::query()->paginate(10);
-        $nhap = in_product::query()->get();
-        $count = Product::count();
-        $tong_sp = 0;
-        $tong_tien = 0; 
-        foreach ($nhap as $key) {
-            $tong_sp += $key->quantity;
-            $tong_tien += $key->total;
-        }
-        dd($count, $tong_sp,$tong_tien, $nhap);
+        $product = Product::query()->get();
         return view('pages.frontend.product',compact('product'));
     }
     public function getDetail($id)

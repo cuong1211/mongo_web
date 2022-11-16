@@ -36,6 +36,8 @@
                                                     hidden>
                                                 <input type="text" placeholder="total" name="total"
                                                     value="{{ $product->price }}" hidden>
+                                                <input type="text" placeholder="product" name="status"
+                                                    value="{{App\Enums\StatusType::Pending}}" hidden>
                                                 <button type="submit">
                                                     <span class="boxed-btn">Place Order
                                                     </span>
@@ -117,7 +119,6 @@
 @endsection
 @push('jsfrontend')
     <script>
-        
         $('#form_add_order').on('submit', function(e) {
             e.preventDefault();
             let data = $(this).serialize(),

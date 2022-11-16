@@ -21,23 +21,16 @@ class InProductService
         $create = in_product::create($data);
         return $create;
     }
-    public function edit(InProductRequest $request, $id)
+    public function edit($data, $id)
     {
-
-        // $a = 'ObjectId';
-        // $InProduct_old = $a."("."'".$id."'".")";
-
         $InProduct = in_product::where('_id', $id)
             ->update([
-                'name' => $request->name,
-                'description' => $request->description,
-                'price' => $request->price,
+                'name' => $data->name,
+                'product_id' => $data->product_id,
+                'company_id' => $data->company_id,
+                'quantity' => $data->quantity,
+                'total' => $data->total,
             ]);
-        // $InProduct = InProduct::find($obId)->update([
-        //     'name' => $request->name,
-        //     'description' => $request->description,
-        //     'price' => $request->price,
-        // ]);
         return $InProduct;
     }
     public function delete($id)

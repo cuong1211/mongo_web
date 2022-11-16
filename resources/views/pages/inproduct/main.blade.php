@@ -172,14 +172,13 @@
                                         <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
                                             <input class="form-check-input" type="checkbox" data-kt-check="true"
                                                 data-kt-check-target="#kt_customers_table .form-check-input"
-                                                value="1" />
+                                                 />
                                         </div>
                                     </th>
-                                    <th class="min-w-125px">Image</th>
                                     <th class="min-w-125px">Product</th>
                                     <th class="min-w-125px">Company</th>
                                     <th class="min-w-125px">Quantity</th>
-                                    <th class="min-w-125px"> Total Price</th>
+                                    <th class="min-w-125px"> Total Price</th>,  
                                     <th class="text-end min-w-70px">Actions</th>
                                 </tr>
                                 <!--end::Table row-->

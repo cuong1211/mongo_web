@@ -9,7 +9,6 @@ class in_product extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'image',
         'quantity',
         'product_id',
         'company_id',
@@ -18,7 +17,7 @@ class in_product extends Model
     protected $dates = ['created_at', 'updated_at'];
     public function product()
     {
-        return $this->belongsTo(product::class, 'product_id');
+        return $this->belongsTo(Product::class, 'product_id');
     }
     public function company()
     {

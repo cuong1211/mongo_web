@@ -12,22 +12,11 @@
             url: "{{ route('in_product.show', 'get-list') }}",
             type: 'GET'
         },
-        data: '_id',
         columns: [{
+                data: '_id',
                 render: function(data, type, row, meta) {
                     return '<div class="form-check form-check-sm form-check-custom form-check-solid">\n' +
                         '<input class="form-check-input" type="checkbox" value="' + data + '"/>\n' +
-                        '</div>';
-                }
-            },
-            {
-                render: function(data, type, row, meta) {
-                    return '<div class="symbol symbol-circle symbol-50px overflow-hidden me-3">\n' +
-                        '<a href = "" >\n' +
-                        '<div class = "symbol-label" >\n' +
-                        '<img src = "assets/media/avatars/150-1.jpg" alt = "Emma Smith" class = "w-100" >\n' +
-                        '</div>\n ' +
-                        '</a>\n' +
                         '</div>';
                 }
             },
@@ -87,13 +76,14 @@
         console.log('edit')
         e.preventDefault();
         let data = $(this).data('data');
+        console.log(data)
         let modal = $('#kt_modal_add_customer_form');
         modal.find('.modal-title').text('Edit info');
         modal.find('input[name=id]').val(data._id);
-        modal.find('input[name=name]').val(data.name);
-        modal.find('input[name=phone]').val(data.phone);
-        modal.find('input[name=email]').val(data.email);
-        modal.find('input[name=address]').val(data.address);
+        modal.find('select[name=product_id]').val(data.product_id);
+        modal.find('select[name=company_id]').val(data.company_id);
+        modal.find('input[name=quantity]').val(data.quantity);
+        modal.find('input[name=total]').val(data.total);
         // $('#kt_modal_add_customer_form').modal('show'); 
     });
     $(document).on('click', '.btn-add', function(e) {
@@ -124,9 +114,6 @@
             enctype: 'multipart/form-data',
             type: type,
             data: data,
-            processData: false,
-            contentType: false,
-            data: formData,
             success: function(data) {
                 notification(data.type, data.title, data.content);
                 if (data.type == 'success') {
@@ -149,7 +136,7 @@
         let id = $(this).data('id');
         console.log($(this).data())
         $.ajax({
-            url: "{{ route('product.destroy', '') }}" + '/' + id,
+            url: "{{ route('in_product.destroy', '') }}" + '/' + id,
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },

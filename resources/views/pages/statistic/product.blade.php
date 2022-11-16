@@ -10,15 +10,16 @@
                     <tr class="fw-bolder text-muted bg-light">
                         <th class="ps-4 min-w-325px rounded-start">Product</th>
                         <th class="min-w-125px">Price</th>
-                        <th class="min-w-125px">Deposit</th>
-                        <th class="min-w-200px">Agent</th>
-                        <th class="min-w-150px">Status</th>
+                        <th class="min-w-125px">Buy</th>
+                        <th class="min-w-200px">Sale</th>
+                        <th class="min-w-150px">Stock</th>
                         <th class="min-w-200px text-end rounded-end"></th>
                     </tr>
                 </thead>
                 <!--end::Table head-->
                 <!--begin::Table body-->
                 <tbody>
+                    @foreach ($product as $item)
                     <tr>
                         <td>
                             <div class="d-flex align-items-center">
@@ -26,24 +27,24 @@
                                     <img src="assets/media/stock/600x400/img-26.jpg" class="" alt="" />
                                 </div>
                                 <div class="d-flex justify-content-start flex-column">
-                                    <a href="#" class="text-dark fw-bolder text-hover-primary mb-1 fs-6">Sant
-                                        Extreanet Solution</a>
-                                    <span class="text-muted fw-bold text-muted d-block fs-7">HTML, JS, ReactJS</span>
+                                    <a href="#"
+                                        class="text-dark fw-bolder text-hover-primary mb-1 fs-6">{{ $item->name }}</a>
+                                    
                                 </div>
                             </div>
                         </td>
                         <td>
-                            <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">$2,790</a>
-                            <span class="text-muted fw-bold text-muted d-block fs-7">Paid</span>
+                            <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">{{$item->price}}</a>
+                            
                         </td>
                         <td>
-                            <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">$520</a>
-                            <span class="text-muted fw-bold text-muted d-block fs-7">Rejected</span>
+                            <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">{{App\models\in_product::query()->where('product_id', $item->_id)->get()->sum('quantity')}}</a>
+                          
                         </td>
                         <td>
                             <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">Bradly
                                 Beal</a>
-                            <span class="text-muted fw-bold text-muted d-block fs-7">Insurance</span>
+                            
                         </td>
                         <td>
                             <span class="badge badge-light-primary fs-7 fw-bold">Approved</span>
@@ -99,6 +100,7 @@
                             </a>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
                 <!--end::Table body-->
             </table>

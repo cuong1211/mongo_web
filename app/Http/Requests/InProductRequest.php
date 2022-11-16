@@ -28,7 +28,6 @@ class InProductRequest extends FormRequest
     protected function store()
     {
         return [
-        'image' => 'nullable',
         'product_id' => 'required',
         'company_id' => 'required',
         'quantity' => 'required',
