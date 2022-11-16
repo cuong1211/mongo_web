@@ -92,9 +92,10 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(OrderRequest $request, $id)
     {
-        $this->orderservice->edit($request, $id);
+        $data = $request->validated();
+        $this->orderservice->edit($data, $id);
         return response()->json(
             [
                 'type' => 'success',

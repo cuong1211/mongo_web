@@ -37,6 +37,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('user', UserController::class);
     route::group(['prefix' => 'statistic'], function () {
         route::get('product', [StatisticalController::class, 'Product'])->name('statistic.product');
+        route::get('sale', [StatisticalController::class, 'SaleReport'])->name('statistic.report');
     });
 });
 

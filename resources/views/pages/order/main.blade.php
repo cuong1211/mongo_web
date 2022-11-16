@@ -176,9 +176,9 @@
                                         </div>
                                     </th>
                                     <th class="min-w-125px">Name</th>
-                                    
+
                                     <th class="min-w-125px">Phone</th>
-                                    
+
                                     <th class="min-w-125px">Product</th>
                                     <th class="min-w-125px">Total</th>
                                     <th class="min-w-125px">Date</th>
@@ -190,8 +190,8 @@
                             <!--end::Table head-->
                             <!--begin::Table body-->
                             <tbody class="fw-bold text-gray-600">
-                              
-    
+
+
                             </tbody>
                             <!--end::Table body-->
                         </table>
@@ -247,7 +247,6 @@
                                         data-kt-scroll-wrappers="#kt_modal_add_customer_scroll"
                                         data-kt-scroll-offset="300px">
                                         <input type="hidden" name="id" value="">
-                                        <input type="hidden" name="orderId" value="">
                                         <!--begin::Input group-->
                                         <div class="fv-row mb-7">
                                             <!--begin::Label-->
@@ -312,7 +311,7 @@
                         <!--begin::Modal content-->
                         <div class="modal-content">
                             <!--begin::Form-->
-                            <form class="form" id="kt_modal_add_customer_form">
+                            <form class="form" id="kt_modal_status_form">
                                 @csrf
                                 <!--begin::Modal header-->
                                 <div class="modal-header" id="kt_modal_add_customer_header">
@@ -341,22 +340,22 @@
                                 <div class="modal-body py-10 px-lg-17">
                                     <!--begin::Scroll-->
                                     <div class="scroll-y me-n7 pe-7" id="kt_modal_add_customer_scroll">
-                                        <p><input type="text" placeholder="" name="name"></p>
-                                                <p><input type="email" placeholder=""name="email"></p>
-                                                <p><input type="text" placeholder=""name="address"></p>
-                                                <p><input type="number" placeholder=""name="phone"></p>
-                                                <p><input type="date" placeholder="" name="date"></p>
-                                                <p>
-                                                    <textarea id="bill" cols="30" rows="10" placeholder="Note"name="note"></textarea>
-                                                </p>
-                                                <input type="text" placeholder="" name="product_id"
-                                                    value="" hidden>
-                                                <input type="text" placeholder="" name="quantity" value="1"
-                                                    hidden>
-                                                <input type="text" placeholder="" name="total"
-                                                    value="" hidden>
-                                                <input type="text" placeholder="" name="status"
-                                                    value="" hidden>
+                                        <p><input type="hidden" placeholder="" name="id" value="" >
+                                        </p>
+                                        <p><input type="hidden" placeholder="" name="name" ></p>
+                                        <p><input type="hidden" placeholder=""name="email" hidden></p>
+                                        <p><input type="hidden" placeholder=""name="address" hidden></p>
+                                        <p><input type="hidden" placeholder=""name="phone" hidden></p>
+                                        <p><input type="hidden" placeholder="" name="date" hidden></p>
+                                        <p><input type="hidden" placeholder="" name="note" hidden></p>
+                                        <input type="hidden" placeholder="" name="product_id" value="" hidden>
+                                        <input type="hidden" placeholder="" name="quantity" value="1" hidden>
+                                        <input type="hidden" placeholder="" name="total" value="" hidden>
+                                        <select name="status" id="select_cateid"autofocus>
+                                            @foreach (App\Enums\StatusType::toSelectArray() as $item => $value)
+                                                <option value="{{ $item}}">{{ $value }}</option>
+                                            @endforeach
+                                        </select>
                                         <!--end::Input group-->
                                     </div>
                                     <!--end::Scroll-->
@@ -369,7 +368,7 @@
                                         class="btn btn-light me-3">Discard</button>
                                     <!--end::Button-->
                                     <!--begin::Button-->
-                                    <button type="submit" id="kt_modal_add_customer_submit" class="btn btn-primary">
+                                    <button type="submit" id="kt_modal_status_submit" class="btn btn-primary">
                                         <span class="indicator-label">Submit</span>
                                         <span class="indicator-progress">Please wait...
                                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

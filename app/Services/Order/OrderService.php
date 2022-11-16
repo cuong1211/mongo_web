@@ -20,22 +20,20 @@ class OrderService
         $create = Order::create($data);
         return $create;
     }
-    public function edit(OrderRequest $request, $id)
+    public function edit($data, $id)
     {
-
-        // $a = 'ObjectId';
-        // $order_old = $a."("."'".$id."'".")";
+        // dd($data);
         $order = Order::where('_id', $id)
             ->update([
-                'name' => $request->name,
-                'description' => $request->description,
-                'price' => $request->price,
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'address' => $data['address'],
+                'phone' => $data['phone'],
+                'product_id' => $data['product_id'],
+                'total' => $data['total'],
+                'date' => $data['date'],
+                'status' => $data['status'],
             ]);
-        // $order = Order::find($obId)->update([
-        //     'name' => $request->name,
-        //     'description' => $request->description,
-        //     'price' => $request->price,
-        // ]);
         return $order;
     }
     public function delete($id)

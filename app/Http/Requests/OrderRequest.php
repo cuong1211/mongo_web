@@ -45,9 +45,16 @@ class OrderRequest extends FormRequest
     protected function update()
     {
         return [
-        'name' => 'required|unique:posts|max:255',
-        'description' => 'nullable',
-        'price'=>'required'
+            'name' => 'required|max:255',
+            'email' => 'nullable|email',
+            'address' => 'required',
+            'phone' => 'required|numeric',
+            'note' => 'required',
+            'product_id' => 'required',
+            'quatity '=> 'nullable|numeric',
+            'total' => 'required',
+            'date' => 'required',
+            'status' => 'required',
         ];
     }
 }

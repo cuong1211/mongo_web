@@ -38,16 +38,15 @@
                             
                         </td>
                         <td>
-                            <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">{{App\models\in_product::query()->where('product_id', $item->_id)->get()->sum('quantity')}}</a>
+                            <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">{{$buy = App\models\in_product::query()->where('product_id', $item->_id)->get()->sum('quantity')}}</a>
                           
                         </td>
                         <td>
-                            <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">Bradly
-                                Beal</a>
+                            <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">{{$sale = App\models\Order::query()->where('product_id', $item->_id)->get()->where('status', App\Enums\StatusType::Accept)->sum('status')}}</a>
                             
                         </td>
                         <td>
-                            <span class="badge badge-light-primary fs-7 fw-bold">Approved</span>
+                            <a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">{{$buy - $sale}}</a>
                         </td>
                         <td class="text-end">
                             <a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">

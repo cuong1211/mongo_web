@@ -61,12 +61,10 @@
                     if(data == 0){
                         return '<span class="label label-lg font-weight-bold label-light-danger label-inline">Cancel</span>';
                     }else if(data == 1){
-                        return '<span class="label label-lg font-weight-bold label-light-success label-inline">Confrim</span>';
+                        return '<span class="label label-lg font-weight-bold label-light-success label-inline">Accept</span>';
                     }else if(data == 2){
                         return '<span class="label label-lg font-weight-bold label-light-warning label-inline">Pending</span>';
                     }
-
-
                 }
             },
             {
@@ -104,10 +102,44 @@
         e.preventDefault();
         var data = $(this).data('data');
         console.log(data);
-        let modal = $('#kt_modal_add_customer_form');
+        let modal = $('#kt_modal_status_form');
         modal.find('input[name="id"]').val(data._id);
         modal.find('input[name="name"]').val(data.name);
+        modal.find('input[name="email"]').val(data.email);
+        modal.find('input[name="address"]').val(data.address);
+        modal.find('input[name="phone"]').val(data.phone);
+        modal.find('input[name="product_id"]').val(data.product_id);
+        modal.find('input[name="total"]').val(data.total);
+        modal.find('input[name="date"]').val(data.date);
+        modal.find('input[name="note"]').val(data.note);
         modal.find('select[name="status"]').val(data.status);
+        id = $('form#kt_modal_status_form input[name=id]').val();
+        console.log(parseInt(id));
+    });
+    $('#kt_modal_status_form').on('submit', function(e) {
+        e.preventDefault();
+        let data = $(this).serialize(),
+            id = $('form#kt_modal_status_form input[name=id]').val();
+            console.log(id);
+        $.ajax({
+            url: "{{ route('order.store') }}" + '/' + id,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'PUT',
+            data: data,
+            success: function(data) {
+                if (data.type == 'success') {
+                    alert(data.title);
+                    dt.ajax.reload(null, false);
+                    $('#kt_modal_status_form').trigger('reset');
+                    $('#kt_modal_status').modal('hide');
+                }
+            },
+            error: function(data) {
+                console.log('error');
+            }
+        });
     });
     $(document).on('click', '.btn-edit', function(e) {
         console.log('edit')
@@ -117,8 +149,6 @@
         modal.find('.modal-title').text('Edit info');
         modal.find('input[name=id]').val(data._id);
         modal.find('input[name=name]').val(data.name);
-        modal.find('input[name=description]').val(data.description);
-        modal.find('input[name=price]').val(data.price);
         // $('#kt_modal_add_customer_form').modal('show'); 
     });
     $(document).on('click', '.btn-add', function(e) {
@@ -158,7 +188,6 @@
             },
             error: function(data) {
                 console.log('error');
-                printErrorMsg(data.error);
             }
         });
     });
@@ -184,11 +213,4 @@
         });
     });
 
-    function printErrorMsg(msg) {
-        $(".print-error-msg").find("ul").html('');
-        $(".print-error-msg").css('display', 'block');
-        $.each(msg, function(key, value) {
-            $(".print-error-msg").find("ul").append('<li>' + value + '</li>');
-        });
-    }
 </script>
