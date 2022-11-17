@@ -12,22 +12,17 @@
                         <!--begin::Card title-->
                         <div class="card-title">
                             <!--begin::Search-->
-                            <div class="d-flex align-items-center position-relative my-1">
-                                <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
-                                <span class="svg-icon svg-icon-1 position-absolute ms-6">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none">
-                                        <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2"
-                                            rx="1" transform="rotate(45 17.0365 15.1223)" fill="black" />
-                                        <path
-                                            d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"
-                                            fill="black" />
-                                    </svg>
-                                </span>
-                                <!--end::Svg Icon-->
-                                <input type="text" data-kt-customer-table-filter="search"
-                                    class="form-control form-control-solid w-250px ps-15" placeholder="Search Orders" />
-                            </div>
+                            @if (isset($start_date) && isset($end_date))
+                                <div class="d-flex align-items-center position-relative my-1">
+                                    <div class="fs-4 text-dark fw-bolder">Sale Report From
+                                        <span class="text-primary">{{ date('d-m-Y', strtotime($start_date)) }}</span> To <span class="text-primary">{{ date('d-m-Y', strtotime($end_date)) }}</span>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="d-flex align-items-center position-relative my-1">
+                                    <div class="fs-4 text-dark fw-bolder">Sale Report From <span class="text-primary"> {{$mytime}}</span></div>
+                                </div>
+                            @endif
                             <!--end::Search-->
                         </div>
 
@@ -53,7 +48,7 @@
                                 <!--begin::Menu 1-->
                                 <div class="menu menu-sub menu-sub-dropdown w-300px w-md-325px" data-kt-menu="true"
                                     id="kt-toolbar-filter">
-                                    <form action="{{route('statistic.report')}}" method="GET">
+                                    <form action="{{ route('statistic.report') }}" method="GET">
                                         <!--begin::Header-->
                                         <div class="px-7 py-5">
                                             <div class="fs-4 text-dark fw-bolder">Filter Options</div>
@@ -70,7 +65,7 @@
                                                 <label class="form-label fs-5 fw-bold mb-3">Start date:</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
-                                                <input type="date" name="start_date">
+                                                <input type="date" name="start_date" class="form-control form-control-solid">
                                                 <!--end::Input-->
                                             </div>
                                             <div class="mb-10">
@@ -78,7 +73,7 @@
                                                 <label class="form-label fs-5 fw-bold mb-3">End date:</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
-                                                <input type="date" name="end_date">
+                                                <input type="date" name="end_date" class="form-control form-control-solid">
                                                 <!--end::Input-->
                                             </div>
                                             <!--end::Input group-->
@@ -128,52 +123,54 @@
                             <thead>
                                 <!--begin::Table row-->
                                 <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                    <th class="w-10px pe-2">
-                                        <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                            <input class="form-check-input" type="checkbox" data-kt-check="true"
-                                                data-kt-check-target="#kt_customers_table .form-check-input" />
-                                        </div>
-                                    </th>
+                
+                                    <th class="min-w-125px">Date</th>
                                     <th class="min-w-125px">Product</th>
+                                    <th class="min-w-125px">Quantity</th>
+                                    <th class="min-w-125px">Price</th>
                                     <th class="min-w-125px">Total</th>
-                                    <th class="min-w-125px">Date</th>,
                                 </tr>
                                 <!--end::Table row-->
                             </thead>
                             <!--end::Table head-->
                             <!--begin::Table body-->
                             <tbody class="fw-bold text-gray-600">
+                                <?php 
+                                    $grandtotal = 0;
+                                    $grandquantity = 0;
+                                ?>
                                 @foreach ($order as $item)
+                                <?php 
+                                    $grandquantity = count($order); ;
+                                    $grandtotal += $item->total;
+                                ?>
                                     <tr>
-                                        <!--begin::Checkbox-->
-                                        <td>
-                                            <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                <input class="form-check-input" type="checkbox" value="1" />
-                                            </div>
-                                        </td>
-                                        <!--end::Checkbox-->
-                                        <!--begin::Name=-->
+                                        <td class="text-left">{{ date('d-m-Y', strtotime($item->date)) }}</td>
                                         <td>
                                             {{ $item->product->name }}
                                         </td>
-                                        <!--end::Name=-->
-                                        <!--begin::Email=-->
                                         <td>
-                                            {{ $item->total }}
+                                            1
                                         </td>
-                                        <!--end::Email=-->
-                                        <!--begin::Company=-->
-                                        <!--end::Company=-->
-                                        <!--begin::Payment method=-->
-                                        <!--end::Payment method=-->
-                                        <!--begin::Date=-->
-                                        <td>{{ $item->date }}</td>
-                                        <!--end::Date=-->
-                                        <!--begin::Action=-->
-                                        <!--end::Action=-->
+                                        <td>
+                                            {{ $item->product->price }}
+                                        <td>
+                                            {{ $item->total }} VNĐ
+                                        </td>
+                                       
                                     </tr>
                                 @endforeach
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td class="min-w-125px ">Date</td>
+                                    <td class="min-w-125px text-end">Total Quantity: </td>
+                                    <td class="min-w-125px">{{ $grandquantity}}</td>
+                                    <td class="min-w-125px text-end">Total:</td>
+                                    <td class="min-w-125px ">{{$grandtotal}} VNĐ</td>
+                                    {{-- <td>{{ $total }}</td> --}}
+                                </tr>
+                            </tfoot>
                             <!--end::Table body-->
                         </table>
                         <!--end::Table-->
