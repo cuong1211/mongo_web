@@ -29,15 +29,15 @@ class StatisticalController extends Controller
     { 
         $start_date = $request->start_date;
         $end_date = $request->end_date;
-        $mytime = Carbon::now()->format('d-m-Y');
-        // dd($mytime);
+        $now = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
         if($start_date && $end_date){
             $order = Order::query()->with('product')->where('status', '1')->get()->whereBetween('date', [$request->start_date, $request->end_date]);
         }
         else{
-            $order = Order::query()->with('product')->where('status', '1')->get()->whereBetween('date', [$mytime, $mytime]);
+            $order = Order::query()->with('product')->where('status', '1')->where('date',$now)->get();
+    
         };
-        // dd($order);
-        return view('pages.statistic.report',compact('order','start_date','end_date','mytime'));
+      
+        return view('pages.statistic.report',compact('order','start_date','end_date','now'));
     }
 }

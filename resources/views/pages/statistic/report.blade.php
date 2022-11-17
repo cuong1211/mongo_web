@@ -20,7 +20,7 @@
                                 </div>
                             @else
                                 <div class="d-flex align-items-center position-relative my-1">
-                                    <div class="fs-4 text-dark fw-bolder">Sale Report From <span class="text-primary"> {{$mytime}}</span></div>
+                                    <div class="fs-4 text-dark fw-bolder">Sale Report From <span class="text-primary"> {{date('d-m-Y', strtotime($now))}}</span></div>
                                 </div>
                             @endif
                             <!--end::Search-->
@@ -96,8 +96,7 @@
                                 <!--end::Menu 1-->
                                 <!--end::Filter-->
                                 <!--begin::Add customer-->
-                                <button type="button" class="btn btn-primary btn-add" data-bs-toggle="modal"
-                                    data-bs-target="#kt_modal_add_customer">Add Order</button>
+                                
                                 <!--end::Add customer-->
                             </div>
                             <!--end::Toolbar-->
