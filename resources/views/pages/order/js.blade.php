@@ -55,18 +55,7 @@
                     return data;
                 }
             },
-            {
-                data: 'status',
-                render: function(data, type, row, meta) {
-                    if(data == 0){
-                        return '<span class="label label-lg font-weight-bold label-light-danger label-inline">Cancel</span>';
-                    }else if(data == 1){
-                        return '<span class="label label-lg font-weight-bold label-light-success label-inline">Accept</span>';
-                    }else if(data == 2){
-                        return '<span class="label label-lg font-weight-bold label-light-warning label-inline">Pending</span>';
-                    }
-                }
-            },
+            {data: 'status', name: 'status'},
             {
                 data: null,
                 className: 'text-end',
@@ -93,6 +82,22 @@
                         '</div>';
                 }
             }
+        ],
+        columnDefs: [
+            {
+                targets: 6,
+                render: function (data, type, full, meta) {
+                    var status = {
+                        0: {'title': 'Đã hủy', 'class': ' label-light-danger'},
+                        1: {'title': 'Đã xử lý', 'class': ' label-light-success'},
+                        2: {'title': 'Đang xử lý', 'class': 'label-light-primary'},
+                    };
+                    if (typeof status[data] === 'undefined') {
+                        return data;
+                    }
+                    return '<span class="label label-lg font-weight-bold' + status[data].class + ' label-inline">' + status[data].title + '</span>';
+                },
+            },
         ],
     });
     dt.on('draw', function() {
