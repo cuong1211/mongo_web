@@ -1,18 +1,18 @@
 @extends('layout.source')
 @section('title')
-Sale Report
+Thống kê mua bán
 @endsection
 @extends('layout.header')
 @section('breadcrumb')
 <div class="page-title d-flex flex-column me-5">
     <!--begin::Title-->
-    <h1 class="d-flex flex-column text-dark fw-bolder fs-3 mb-0">Sale Report</h1>
+    <h1 class="d-flex flex-column text-dark fw-bolder fs-3 mb-0">Thống kê mua bán</h1>
     <!--end::Title-->
     <!--begin::Breadcrumb-->
     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 pt-1">
         <!--begin::Item-->
         <li class="breadcrumb-item text-muted">
-            <a href="{{route('admin')}}" class="text-muted text-hover-primary">Home</a>
+            <a href="{{route('admin')}}" class="text-muted text-hover-primary">Trang chủ</a>
         </li>
         <!--end::Item-->
         <!--begin::Item-->
@@ -21,7 +21,7 @@ Sale Report
         </li>
         <!--end::Item-->
         <!--begin::Item-->
-        <li class="breadcrumb-item text-dark">Sale Report</li>
+        <li class="breadcrumb-item text-dark">Thống kê mua bán</li>
         <!--end::Item-->
     </ul>
     <!--end::Breadcrumb-->
@@ -43,13 +43,13 @@ Sale Report
                             <!--begin::Search-->
                             @if (isset($start_date) && isset($end_date))
                                 <div class="d-flex align-items-center position-relative my-1">
-                                    <div class="fs-4 text-dark fw-bolder">Sale Report From
-                                        <span class="text-primary">{{ date('d-m-Y', strtotime($start_date)) }}</span> To <span class="text-primary">{{ date('d-m-Y', strtotime($end_date)) }}</span>
+                                    <div class="fs-4 text-dark fw-bolder">Thống kê mua bán từ ngày
+                                        <span class="text-primary">{{ date('d-m-Y', strtotime($start_date)) }}</span> đến <span class="text-primary">{{ date('d-m-Y', strtotime($end_date)) }}</span>
                                     </div>
                                 </div>
                             @else
                                 <div class="d-flex align-items-center position-relative my-1">
-                                    <div class="fs-4 text-dark fw-bolder">Sale Report From <span class="text-primary"> {{date('d-m-Y', strtotime($now))}}</span></div>
+                                    <div class="fs-4 text-dark fw-bolder">Thống kế mua bán ngày <span class="text-primary"> {{date('d-m-Y', strtotime($now))}}</span></div>
                                 </div>
                             @endif
                             <!--end::Search-->
@@ -72,7 +72,7 @@ Sale Report
                                                 fill="black" />
                                         </svg>
                                     </span>
-                                    <!--end::Svg Icon-->Filter
+                                    <!--end::Svg Icon-->Bộ lọc
                                 </button>
                                 <!--begin::Menu 1-->
                                 <div class="menu menu-sub menu-sub-dropdown w-300px w-md-325px" data-kt-menu="true"
@@ -80,7 +80,7 @@ Sale Report
                                     <form action="{{ route('statistic.report') }}" method="GET">
                                         <!--begin::Header-->
                                         <div class="px-7 py-5">
-                                            <div class="fs-4 text-dark fw-bolder">Filter Options</div>
+                                            <div class="fs-4 text-dark fw-bolder">Tuỳ chỉnh bộ lọc</div>
                                         </div>
                                         <!--end::Header-->
                                         <!--begin::Separator-->
@@ -91,7 +91,7 @@ Sale Report
                                             <!--begin::Input group-->
                                             <div class="mb-10">
                                                 <!--begin::Label-->
-                                                <label class="form-label fs-5 fw-bold mb-3">Start date:</label>
+                                                <label class="form-label fs-5 fw-bold mb-3">Từ ngày:</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <input type="date" name="start_date" class="form-control form-control-solid">
@@ -99,7 +99,7 @@ Sale Report
                                             </div>
                                             <div class="mb-10">
                                                 <!--begin::Label-->
-                                                <label class="form-label fs-5 fw-bold mb-3">End date:</label>
+                                                <label class="form-label fs-5 fw-bold mb-3">Đến ngày:</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <input type="date" name="end_date" class="form-control form-control-solid">
@@ -152,11 +152,11 @@ Sale Report
                                 <!--begin::Table row-->
                                 <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                 
-                                    <th class="min-w-125px">Date</th>
-                                    <th class="min-w-125px">Product</th>
-                                    <th class="min-w-125px">Quantity</th>
-                                    <th class="min-w-125px">Price</th>
-                                    <th class="min-w-125px">Total</th>
+                                    <th class="min-w-125px">Ngày bán</th>
+                                    <th class="min-w-125px">Sản phẩm</th>
+                                    <th class="min-w-125px">Số lượng</th>
+                                    <th class="min-w-125px">Giá tiền</th>
+                                    <th class="min-w-125px">Đơn giá</th>
                                 </tr>
                                 <!--end::Table row-->
                             </thead>
@@ -191,10 +191,10 @@ Sale Report
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td class="min-w-125px ">Date</td>
-                                    <td class="min-w-125px text-end">Total Quantity: </td>
+                                    <td class="min-w-125px ">Ngày bán</td>
+                                    <td class="min-w-125px text-end">Tổng số lượng: </td>
                                     <td class="min-w-125px">{{ $grandquantity}}</td>
-                                    <td class="min-w-125px text-end">Total:</td>
+                                    <td class="min-w-125px text-end">Tổng tiền:</td>
                                     <td class="min-w-125px ">{{$grandtotal}} VNĐ</td>
                                     {{-- <td>{{ $total }}</td> --}}
                                 </tr>

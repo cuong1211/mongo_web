@@ -10,7 +10,7 @@
                 <div class="modal-header" id="kt_modal_add_customer_header">
                     <!--begin::Modal title-->
                     
-                    <h2 class="fw-bolder modal-title">Add new order</h2>
+                    <h2 class="fw-bolder modal-title"></h2>
                     <!--end::Modal title-->
                     <!--begin::Close-->
                     <div id="kt_modal_add_customer_close"
@@ -48,7 +48,7 @@
                         <!--begin::Input group-->
                         <div class="fv-row mb-7">
                             <!--begin::Label-->
-                            <label class="required fs-6 fw-bold mb-2">Name</label>
+                            <label class="required fs-6 fw-bold mb-2">Tên nhà cung cấp</label>
                             <!--end::Label-->
                             <!--begin::Input-->
                             <input type="text" class="form-control form-control-solid" placeholder=""
@@ -59,7 +59,7 @@
                         <!--begin::Input group-->
                         <div class="fv-row mb-15">
                             <!--begin::Label-->
-                            <label class="fs-6 fw-bold mb-2">Phone</label>
+                            <label class="fs-6 fw-bold mb-2">Số điện thoại</label>
                             <!--end::Label-->
                             <!--begin::Input-->
                             <input type="text" class="form-control form-control-solid" placeholder=""
@@ -79,7 +79,7 @@
                         </div>
                         <div class="fv-row mb-7">
                             <!--begin::Label-->
-                            <label class="fs-6 fw-bold mb-2">Address</label>
+                            <label class="fs-6 fw-bold mb-2">Địa chỉ</label>
                             <!--end::Label-->
                             <!--begin::Input-->
                             <input type="text" class="form-control form-control-solid" placeholder=""

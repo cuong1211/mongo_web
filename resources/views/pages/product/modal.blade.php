@@ -12,7 +12,7 @@
                     <div class="alert alert-danger print-error-msg" style="display:none">
                         <ul></ul>
                     </div>
-                    <h2 class="fw-bolder modal-title">Add new order</h2>
+                    <h2 class="fw-bolder modal-title"></h2>
                     <!--end::Modal title-->
                     <!--begin::Close-->
                     <div id="kt_modal_add_customer_close"
@@ -46,7 +46,7 @@
                         <!--begin::Input group-->
                         <div class="fv-row mb-7">
                             <!--begin::Label-->
-                            <label class="required fs-6 fw-bold mb-2">Name</label>
+                            <label class="required fs-6 fw-bold mb-2">Tên sản phẩm</label>
                             <!--end::Label-->
                             <!--begin::Input-->
                             <input type="text" class="form-control form-control-solid" placeholder=""
@@ -57,7 +57,7 @@
                         <!--begin::Input group-->
                         <div class="fv-row mb-7">
                             <!--begin::Label-->
-                            <label class="fs-6 fw-bold mb-2">Description</label>
+                            <label class="fs-6 fw-bold mb-2">Mô tả</label>
                             <!--end::Label-->
                             <!--begin::Input-->
                             <input type="text" class="form-control form-control-solid" placeholder=""
@@ -68,7 +68,7 @@
                         <!--begin::Input group-->
                         <div class="fv-row mb-7">
                             <!--begin::Label-->
-                            <label class="fs-6 fw-bold mb-2">Price</label>
+                            <label class="fs-6 fw-bold mb-2">Giá</label>
                             <!--end::Label-->
                             <!--begin::Input-->
                             <input type="number" class="form-control form-control-solid" placeholder=""
@@ -77,7 +77,7 @@
                         </div>
                         <div class="fv-row mb-7">
                             <!--begin::Label-->
-                            <label class="fs-6 fw-bold mb-2">Category</label>
+                            <label class="fs-6 fw-bold mb-2">Loại hàng</label>
                             <!--end::Label-->
                             <!--begin::Input-->
                             <select name="category_id" id="select_cateid"autofocus data-placeholder="Select a Country..."
@@ -90,7 +90,7 @@
                         </div>
                         <!--end::Input group-->
                         <div class="fv-row mb-7">
-                            <label class="fs-6 fw-bold mb-2">Image</label>
+                            <label class="fs-6 fw-bold mb-2">Ảnh sản phẩm</label>
                             <br>
                             <input type="file" class="form-control form-control-solid"  onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])" name="img">
                             <br>

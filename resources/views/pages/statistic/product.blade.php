@@ -1,18 +1,18 @@
 @extends('layout.source')
 @section('title')
-Stock
+Sản phẩm trong kho
 @endsection
 @extends('layout.header')
 @section('breadcrumb')
 <div class="page-title d-flex flex-column me-5">
     <!--begin::Title-->
-    <h1 class="d-flex flex-column text-dark fw-bolder fs-3 mb-0">Stock</h1>
+    <h1 class="d-flex flex-column text-dark fw-bolder fs-3 mb-0">Sản phẩm trong kho</h1>
     <!--end::Title-->
     <!--begin::Breadcrumb-->
     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 pt-1">
         <!--begin::Item-->
         <li class="breadcrumb-item text-muted">
-            <a href="{{route('admin')}}" class="text-muted text-hover-primary">Home</a>
+            <a href="{{route('admin')}}" class="text-muted text-hover-primary">Trang chủ</a>
         </li>
         <!--end::Item-->
         <!--begin::Item-->
@@ -21,7 +21,7 @@ Stock
         </li>
         <!--end::Item-->
         <!--begin::Item-->
-        <li class="breadcrumb-item text-dark">Stock</li>
+        <li class="breadcrumb-item text-dark">Sản phẩm trong kho</li>
         <!--end::Item-->
     </ul>
     <!--end::Breadcrumb-->
@@ -37,11 +37,11 @@ Stock
                 <!--begin::Table head-->
                 <thead>
                     <tr class="fw-bolder text-muted bg-light">
-                        <th class="ps-4 min-w-325px rounded-start">Product</th>
-                        <th class="min-w-125px">Price</th>
-                        <th class="min-w-125px">Buy</th>
-                        <th class="min-w-200px">Sale</th>
-                        <th class="min-w-150px">Stock</th>
+                        <th class="ps-4 min-w-325px rounded-start">Sản phẩm</th>
+                        <th class="min-w-125px">Giá</th>
+                        <th class="min-w-125px">Số lượng mua</th>
+                        <th class="min-w-200px">Số lương bán</th>
+                        <th class="min-w-150px">Số hàng còn lại</th>
                         <th class="min-w-200px text-end rounded-end"></th>
                     </tr>
                 </thead>

@@ -10,7 +10,7 @@
                 <div class="modal-header" id="kt_modal_add_customer_header">
                     <!--begin::Modal title-->
 
-                    <h2 class="fw-bolder modal-title">Add new order</h2>
+                    <h2 class="fw-bolder modal-title"></h2>
                     <!--end::Modal title-->
                     <!--begin::Close-->
                     <div id="kt_modal_add_customer_close" class="btn btn-icon btn-sm btn-active-icon-primary btn-close">
@@ -43,7 +43,7 @@
                         <!--begin::Input group-->
                         <div class="fv-row mb-7">
                             <!--begin::Label-->
-                            <label class="fs-6 fw-bold mb-2">Product</label>
+                            <label class="fs-6 fw-bold mb-2">Sản phẩm</label>
                             <!--end::Label-->
                             <!--begin::Input-->
                             <select name="product_id" id="select_price" autofocus data-placeholder="Select a Country..."
@@ -56,14 +56,14 @@
                             </select>
                             <!--end::Input-->
                         </div>
-                        <label class="fs-6 fw-bold mb-2">Price</label>
+                        <label class="fs-6 fw-bold mb-2">Giá tiền</label>
                         <input type="text" id="price" class="form-control form-control-solid test" placeholder=""
                             readonly></td>
                         <!--end::Input group-->
                         <!--begin::Input group-->
                         <div class="fv-row mb-7">
                             <!--begin::Label-->
-                            <label class="fs-6 fw-bold mb-2">Company</label>
+                            <label class="fs-6 fw-bold mb-2">Nhà cung cấp</label>
                             <!--end::Label-->
                             <!--begin::Input-->
                             <select name="company_id" id="select_cateid"autofocus data-placeholder="Select a Country..."
@@ -76,14 +76,14 @@
                         </div>
                         <div class="fv-row mb-7">
                             <!--begin::Label-->
-                            <label class="fs-6 fw-bold mb-2">Quantity</label>
+                            <label class="fs-6 fw-bold mb-2">Số lượng</label>
                             <!--end::Label-->
                             <!--begin::Input-->
                             <input type="number" id="quantity" class="form-control form-control-solid" placeholder=""
                                 name="quantity" />
                             <!--end::Input-->
                         </div>
-                        <label class="fs-6 fw-bold mb-2">Total</label>
+                        <label class="fs-6 fw-bold mb-2">Tổng tiền</label>
                         <input type="text" id="total_money" class="form-control form-control-solid" placeholder=""
                             name="total" readonly />
                         <!--end::Input group-->
