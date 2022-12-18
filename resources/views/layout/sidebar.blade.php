@@ -18,10 +18,10 @@
                     <!--begin::Info-->
                     <div class="flex-grow-1 me-2">
                         <!--begin::Username-->
-                        <a href="#" class="text-white text-hover-primary fs-6 fw-bold">Paul Melone</a>
+                        <a href="#" class="text-white text-hover-primary fs-6 fw-bold">{{Auth::user()->name}}</a>
                         <!--end::Username-->
                         <!--begin::Description-->
-                        <span class="text-gray-600 fw-bold d-block fs-8 mb-1">Python Dev</span>
+                        <span class="text-gray-600 fw-bold d-block fs-8 mb-1"></span>
                         <!--end::Description-->
                         <!--begin::Label-->
                         <div class="d-flex align-items-center text-success fs-9">
@@ -63,12 +63,9 @@
                                     <!--end::Avatar-->
                                     <!--begin::Username-->
                                     <div class="d-flex flex-column">
-                                        <div class="fw-bolder d-flex align-items-center fs-5">Max Smith
-                                            <span
-                                                class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">Pro</span>
+                                        <div class="fw-bolder d-flex align-items-center fs-5">{{Auth::user()->name}}
+                                            <span class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">Admin</span>
                                         </div>
-                                        <a href="#"
-                                            class="fw-bold text-muted text-hover-primary fs-7">max@kt.com</a>
                                     </div>
                                     <!--end::Username-->
                                 </div>
@@ -78,158 +75,10 @@
                             <div class="separator my-2"></div>
                             <!--end::Menu separator-->
                             <!--begin::Menu item-->
-                            <div class="menu-item px-5">
-                                <a href="../../demo8/dist/account/overview.html" class="menu-link px-5">My Profile</a>
-                            </div>
-                            <!--end::Menu item-->
+                            
                             <!--begin::Menu item-->
                             <div class="menu-item px-5">
-                                <a href="../../demo8/dist/pages/projects/list.html" class="menu-link px-5">
-                                    <span class="menu-text">My Projects</span>
-                                    <span class="menu-badge">
-                                        <span class="badge badge-light-danger badge-circle fw-bolder fs-7">3</span>
-                                    </span>
-                                </a>
-                            </div>
-                            <!--end::Menu item-->
-                            <!--begin::Menu item-->
-                            <div class="menu-item px-5" data-kt-menu-trigger="hover"
-                                data-kt-menu-placement="right-start">
-                                <a href="#" class="menu-link px-5">
-                                    <span class="menu-title">My Subscription</span>
-                                    <span class="menu-arrow"></span>
-                                </a>
-                                <!--begin::Menu sub-->
-                                <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="../../demo8/dist/account/referrals.html"
-                                            class="menu-link px-5">Referrals</a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="../../demo8/dist/account/billing.html"
-                                            class="menu-link px-5">Billing</a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="../../demo8/dist/account/statements.html"
-                                            class="menu-link px-5">Payments</a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="../../demo8/dist/account/statements.html"
-                                            class="menu-link d-flex flex-stack px-5">Statements
-                                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                                title="View your statements"></i></a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                    <!--begin::Menu separator-->
-                                    <div class="separator my-2"></div>
-                                    <!--end::Menu separator-->
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <div class="menu-content px-3">
-                                            <label class="form-check form-switch form-check-custom form-check-solid">
-                                                <input class="form-check-input w-30px h-20px" type="checkbox"
-                                                    value="1" checked="checked" name="notifications" />
-                                                <span class="form-check-label text-muted fs-7">Notifications</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <!--end::Menu item-->
-                                </div>
-                                <!--end::Menu sub-->
-                            </div>
-                            <!--end::Menu item-->
-                            <!--begin::Menu item-->
-                            <div class="menu-item px-5">
-                                <a href="../../demo8/dist/account/statements.html" class="menu-link px-5">My
-                                    Statements</a>
-                            </div>
-                            <!--end::Menu item-->
-                            <!--begin::Menu separator-->
-                            <div class="separator my-2"></div>
-                            <!--end::Menu separator-->
-                            <!--begin::Menu item-->
-                            <div class="menu-item px-5" data-kt-menu-trigger="hover"
-                                data-kt-menu-placement="right-start">
-                                <a href="#" class="menu-link px-5">
-                                    <span class="menu-title position-relative">Language
-                                        <span
-                                            class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">English
-                                            <img class="w-15px h-15px rounded-1 ms-2"
-                                                src="assets/media/flags/united-states.svg"
-                                                alt="" /></span></span>
-                                </a>
-                                <!--begin::Menu sub-->
-                                <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="../../demo8/dist/account/settings.html"
-                                            class="menu-link d-flex px-5 active">
-                                            <span class="symbol symbol-20px me-4">
-                                                <img class="rounded-1" src="assets/media/flags/united-states.svg"
-                                                    alt="" />
-                                            </span>English</a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="../../demo8/dist/account/settings.html"
-                                            class="menu-link d-flex px-5">
-                                            <span class="symbol symbol-20px me-4">
-                                                <img class="rounded-1" src="assets/media/flags/spain.svg"
-                                                    alt="" />
-                                            </span>Spanish</a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="../../demo8/dist/account/settings.html"
-                                            class="menu-link d-flex px-5">
-                                            <span class="symbol symbol-20px me-4">
-                                                <img class="rounded-1" src="assets/media/flags/germany.svg"
-                                                    alt="" />
-                                            </span>German</a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="../../demo8/dist/account/settings.html"
-                                            class="menu-link d-flex px-5">
-                                            <span class="symbol symbol-20px me-4">
-                                                <img class="rounded-1" src="assets/media/flags/japan.svg"
-                                                    alt="" />
-                                            </span>Japanese</a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="../../demo8/dist/account/settings.html"
-                                            class="menu-link d-flex px-5">
-                                            <span class="symbol symbol-20px me-4">
-                                                <img class="rounded-1" src="assets/media/flags/france.svg"
-                                                    alt="" />
-                                            </span>French</a>
-                                    </div>
-                                    <!--end::Menu item-->
-                                </div>
-                                <!--end::Menu sub-->
-                            </div>
-                            <!--end::Menu item-->
-                            <!--begin::Menu item-->
-                            <div class="menu-item px-5 my-1">
-                                <a href="../../demo8/dist/account/settings.html" class="menu-link px-5">Account
-                                    Settings</a>
-                            </div>
-                            <!--end::Menu item-->
-                            <!--begin::Menu item-->
-                            <div class="menu-item px-5">
-                                <a href="../../demo8/dist/authentication/flows/basic/sign-in.html"
+                                <a href="{{route('signout')}}"
                                     class="menu-link px-5">Sign Out</a>
                             </div>
                             <!--end::Menu item-->
@@ -237,19 +86,7 @@
                             <div class="separator my-2"></div>
                             <!--end::Menu separator-->
                             <!--begin::Menu item-->
-                            <div class="menu-item px-5">
-                                <div class="menu-content px-5">
-                                    <label
-                                        class="form-check form-switch form-check-custom form-check-solid pulse pulse-success"
-                                        for="kt_user_menu_dark_mode_toggle">
-                                        <input class="form-check-input w-30px h-20px" type="checkbox" value="1"
-                                            name="mode" id="kt_user_menu_dark_mode_toggle"
-                                            data-kt-url="../../demo8/dist/index.html" />
-                                        <span class="pulse-ring ms-n1"></span>
-                                        <span class="form-check-label text-gray-600 fs-7">Dark Mode</span>
-                                    </label>
-                                </div>
-                            </div>
+                            
                             <!--end::Menu item-->
                         </div>
                         <!--end::Menu-->
@@ -305,71 +142,133 @@
                         <span class="menu-title">Trang chủ</span>
                     </a>
                 </div>
-                <div class="menu-item">
-                    <a class="menu-link" id= "btn" href="{{ route('product.index') }}">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                    <span class="menu-link">
                         <span class="menu-icon">
-                            <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
                             <span class="svg-icon svg-icon-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none">
-                                    <rect x="2" y="2" width="9" height="9"
-                                        rx="2" fill="black" />
-                                    <rect opacity="0.3" x="13" y="2" width="9"
-                                        height="9" rx="2" fill="black" />
-                                    <rect opacity="0.3" x="13" y="13" width="9"
-                                        height="9" rx="2" fill="black" />
-                                    <rect opacity="0.3" x="2" y="13" width="9"
-                                        height="9" rx="2" fill="black" />
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z" fill="black" />
+                                    <path d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z" fill="black" />
+                                    <path opacity="0.3" d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z" fill="black" />
+                                    <path opacity="0.3" d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z" fill="black" />
                                 </svg>
                             </span>
                             <!--end::Svg Icon-->
                         </span>
                         <span class="menu-title">Quản lý sản phẩm</span>
-                    </a>
+                        <span class="menu-arrow"></span>
+                    </span>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item">
+                            <a class="menu-link" id= "btn" href="{{ route('product.index') }}">
+                                <span class="menu-icon">
+                                    <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
+                                    <span class="svg-icon svg-icon-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none">
+                                            <rect x="2" y="2" width="9" height="9"
+                                                rx="2" fill="black" />
+                                            <rect opacity="0.3" x="13" y="2" width="9"
+                                                height="9" rx="2" fill="black" />
+                                            <rect opacity="0.3" x="13" y="13" width="9"
+                                                height="9" rx="2" fill="black" />
+                                            <rect opacity="0.3" x="2" y="13" width="9"
+                                                height="9" rx="2" fill="black" />
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                </span>
+                                <span class="menu-title">Quản lý sản phẩm</span>
+                            </a>
+                        </div>
+                        <div class="menu-item">
+                            <a class="menu-link" id= "btn" href="{{ route('category.index') }}">
+                                <span class="menu-icon">
+                                    <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
+                                    <span class="svg-icon svg-icon-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none">
+                                            <rect x="2" y="2" width="9" height="9"
+                                                rx="2" fill="black" />
+                                            <rect opacity="0.3" x="13" y="2" width="9"
+                                                height="9" rx="2" fill="black" />
+                                            <rect opacity="0.3" x="13" y="13" width="9"
+                                                height="9" rx="2" fill="black" />
+                                            <rect opacity="0.3" x="2" y="13" width="9"
+                                                height="9" rx="2" fill="black" />
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                </span>
+                                <span class="menu-title">Quản lý mặt hàng</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="menu-item">
-                    <a class="menu-link" id= "btn" href="{{ route('in_product.index') }}">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                    <span class="menu-link">
                         <span class="menu-icon">
-                            <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
                             <span class="svg-icon svg-icon-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none">
-                                    <rect x="2" y="2" width="9" height="9"
-                                        rx="2" fill="black" />
-                                    <rect opacity="0.3" x="13" y="2" width="9"
-                                        height="9" rx="2" fill="black" />
-                                    <rect opacity="0.3" x="13" y="13" width="9"
-                                        height="9" rx="2" fill="black" />
-                                    <rect opacity="0.3" x="2" y="13" width="9"
-                                        height="9" rx="2" fill="black" />
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z" fill="black" />
+                                    <path d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z" fill="black" />
+                                    <path opacity="0.3" d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z" fill="black" />
+                                    <path opacity="0.3" d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z" fill="black" />
                                 </svg>
                             </span>
                             <!--end::Svg Icon-->
                         </span>
-                        <span class="menu-title">Quản lý nhập sản phẩm</span>
-                    </a>
-                </div>
-                <div class="menu-item">
-                    <a class="menu-link" id= "btn" href="{{ route('company.index') }}">
-                        <span class="menu-icon">
-                            <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
-                            <span class="svg-icon svg-icon-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none">
-                                    <rect x="2" y="2" width="9" height="9"
-                                        rx="2" fill="black" />
-                                    <rect opacity="0.3" x="13" y="2" width="9"
-                                        height="9" rx="2" fill="black" />
-                                    <rect opacity="0.3" x="13" y="13" width="9"
-                                        height="9" rx="2" fill="black" />
-                                    <rect opacity="0.3" x="2" y="13" width="9"
-                                        height="9" rx="2" fill="black" />
-                                </svg>
-                            </span>
-                            <!--end::Svg Icon-->
-                        </span>
-                        <span class="menu-title">Quản lý nhà cung cấp</span>
-                    </a>
+                        <span class="menu-title">Quản lý nhập suất</span>
+                        <span class="menu-arrow"></span>
+                    </span>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item">
+                            <a class="menu-link" id= "btn" href="{{ route('in_product.index') }}">
+                                <span class="menu-icon">
+                                    <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
+                                    <span class="svg-icon svg-icon-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none">
+                                            <rect x="2" y="2" width="9" height="9"
+                                                rx="2" fill="black" />
+                                            <rect opacity="0.3" x="13" y="2" width="9"
+                                                height="9" rx="2" fill="black" />
+                                            <rect opacity="0.3" x="13" y="13" width="9"
+                                                height="9" rx="2" fill="black" />
+                                            <rect opacity="0.3" x="2" y="13" width="9"
+                                                height="9" rx="2" fill="black" />
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                </span>
+                                <span class="menu-title">Quản lý nhập sản phẩm</span>
+                            </a>
+                        </div>
+                        <div class="menu-item">
+                            <a class="menu-link" id= "btn" href="{{ route('company.index') }}">
+                                <span class="menu-icon">
+                                    <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
+                                    <span class="svg-icon svg-icon-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none">
+                                            <rect x="2" y="2" width="9" height="9"
+                                                rx="2" fill="black" />
+                                            <rect opacity="0.3" x="13" y="2" width="9"
+                                                height="9" rx="2" fill="black" />
+                                            <rect opacity="0.3" x="13" y="13" width="9"
+                                                height="9" rx="2" fill="black" />
+                                            <rect opacity="0.3" x="2" y="13" width="9"
+                                                height="9" rx="2" fill="black" />
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                </span>
+                                <span class="menu-title">Quản lý nhà cung cấp</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="menu-item">
                     <a class="menu-link" id= "btn" href="{{ route('order.index') }}">
@@ -415,72 +314,71 @@
                         <span class="menu-title">Receipt Manage</span>
                     </a>
                 </div> --}}
-                <div class="menu-item">
-                    <a class="menu-link" id= "btn" href="{{ route('category.index') }}">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                    <span class="menu-link">
                         <span class="menu-icon">
-                            <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen022.svg-->
                             <span class="svg-icon svg-icon-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none">
-                                    <rect x="2" y="2" width="9" height="9"
-                                        rx="2" fill="black" />
-                                    <rect opacity="0.3" x="13" y="2" width="9"
-                                        height="9" rx="2" fill="black" />
-                                    <rect opacity="0.3" x="13" y="13" width="9"
-                                        height="9" rx="2" fill="black" />
-                                    <rect opacity="0.3" x="2" y="13" width="9"
-                                        height="9" rx="2" fill="black" />
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M11.2929 2.70711C11.6834 2.31658 12.3166 2.31658 12.7071 2.70711L15.2929 5.29289C15.6834 5.68342 15.6834 6.31658 15.2929 6.70711L12.7071 9.29289C12.3166 9.68342 11.6834 9.68342 11.2929 9.29289L8.70711 6.70711C8.31658 6.31658 8.31658 5.68342 8.70711 5.29289L11.2929 2.70711Z" fill="black" />
+                                    <path d="M11.2929 14.7071C11.6834 14.3166 12.3166 14.3166 12.7071 14.7071L15.2929 17.2929C15.6834 17.6834 15.6834 18.3166 15.2929 18.7071L12.7071 21.2929C12.3166 21.6834 11.6834 21.6834 11.2929 21.2929L8.70711 18.7071C8.31658 18.3166 8.31658 17.6834 8.70711 17.2929L11.2929 14.7071Z" fill="black" />
+                                    <path opacity="0.3" d="M5.29289 8.70711C5.68342 8.31658 6.31658 8.31658 6.70711 8.70711L9.29289 11.2929C9.68342 11.6834 9.68342 12.3166 9.29289 12.7071L6.70711 15.2929C6.31658 15.6834 5.68342 15.6834 5.29289 15.2929L2.70711 12.7071C2.31658 12.3166 2.31658 11.6834 2.70711 11.2929L5.29289 8.70711Z" fill="black" />
+                                    <path opacity="0.3" d="M17.2929 8.70711C17.6834 8.31658 18.3166 8.31658 18.7071 8.70711L21.2929 11.2929C21.6834 11.6834 21.6834 12.3166 21.2929 12.7071L18.7071 15.2929C18.3166 15.6834 17.6834 15.6834 17.2929 15.2929L14.7071 12.7071C14.3166 12.3166 14.3166 11.6834 14.7071 11.2929L17.2929 8.70711Z" fill="black" />
                                 </svg>
                             </span>
                             <!--end::Svg Icon-->
                         </span>
-                        <span class="menu-title">Quản lý mặt hàng</span>
-                    </a>
+                        <span class="menu-title">Thống kê</span>
+                        <span class="menu-arrow"></span>
+                    </span>
+                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                        <div class="menu-item">
+                            <a class="menu-link" id= "btn" href="{{ route('statistic.product') }}">
+                                <span class="menu-icon">
+                                    <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
+                                    <span class="svg-icon svg-icon-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none">
+                                            <rect x="2" y="2" width="9" height="9"
+                                                rx="2" fill="black" />
+                                            <rect opacity="0.3" x="13" y="2" width="9"
+                                                height="9" rx="2" fill="black" />
+                                            <rect opacity="0.3" x="13" y="13" width="9"
+                                                height="9" rx="2" fill="black" />
+                                            <rect opacity="0.3" x="2" y="13" width="9"
+                                                height="9" rx="2" fill="black" />
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                </span>
+                                <span class="menu-title">Thống kê sản phẩm</span>
+                            </a>
+                        </div>
+                        <div class="menu-item">
+                            <a class="menu-link" id= "btn" href="{{ route('statistic.report') }}">
+                                <span class="menu-icon">
+                                    <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
+                                    <span class="svg-icon svg-icon-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none">
+                                            <rect x="2" y="2" width="9" height="9"
+                                                rx="2" fill="black" />
+                                            <rect opacity="0.3" x="13" y="2" width="9"
+                                                height="9" rx="2" fill="black" />
+                                            <rect opacity="0.3" x="13" y="13" width="9"
+                                                height="9" rx="2" fill="black" />
+                                            <rect opacity="0.3" x="2" y="13" width="9"
+                                                height="9" rx="2" fill="black" />
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                </span>
+                                <span class="menu-title">Thống kê mua bán</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="menu-item">
-                    <a class="menu-link" id= "btn" href="{{ route('statistic.product') }}">
-                        <span class="menu-icon">
-                            <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
-                            <span class="svg-icon svg-icon-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none">
-                                    <rect x="2" y="2" width="9" height="9"
-                                        rx="2" fill="black" />
-                                    <rect opacity="0.3" x="13" y="2" width="9"
-                                        height="9" rx="2" fill="black" />
-                                    <rect opacity="0.3" x="13" y="13" width="9"
-                                        height="9" rx="2" fill="black" />
-                                    <rect opacity="0.3" x="2" y="13" width="9"
-                                        height="9" rx="2" fill="black" />
-                                </svg>
-                            </span>
-                            <!--end::Svg Icon-->
-                        </span>
-                        <span class="menu-title">Thống kê sản phẩm</span>
-                    </a>
-                </div>
-                <div class="menu-item">
-                    <a class="menu-link" id= "btn" href="{{ route('statistic.report') }}">
-                        <span class="menu-icon">
-                            <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
-                            <span class="svg-icon svg-icon-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none">
-                                    <rect x="2" y="2" width="9" height="9"
-                                        rx="2" fill="black" />
-                                    <rect opacity="0.3" x="13" y="2" width="9"
-                                        height="9" rx="2" fill="black" />
-                                    <rect opacity="0.3" x="13" y="13" width="9"
-                                        height="9" rx="2" fill="black" />
-                                    <rect opacity="0.3" x="2" y="13" width="9"
-                                        height="9" rx="2" fill="black" />
-                                </svg>
-                            </span>
-                            <!--end::Svg Icon-->
-                        </span>
-                        <span class="menu-title">Thống kê mua bán</span>
-                    </a>
-                </div>
+                
 
             </div>
             <!--end::Menu-->

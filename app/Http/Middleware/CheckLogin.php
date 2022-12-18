@@ -17,16 +17,10 @@ class CheckLogin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::check()){
-           // dd(Auth::user());
-            $user = Auth::user();
-            if($user->isAdmin == 1 || $user->isAdmin == 0){
-                return $next($request);
-            }else{
-                Auth::logout();
-                return redirect('/login');
-            }
-        }else{
+        if (Auth::check()) {
+            // dd(Auth::user());
+            return $next($request);
+        } else {
             return redirect('/login');
         }
     }

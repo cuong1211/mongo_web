@@ -53,12 +53,8 @@ License: For each use you must have a valid license purchased only from above li
 							</a>
 							<!--end::Logo-->
 							<!--begin::Title-->
-							<h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #986923;">Welcome to Metronic</h1>
+							<h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #986923;">Chào mừng đến với trang quản lý của hàng bán bánh NHC</h1>
 							<!--end::Title-->
-							<!--begin::Description-->
-							<p class="fw-bold fs-2" style="color: #986923;">Discover Amazing Metronic
-							<br />with great build tools</p>
-							<!--end::Description-->
 						</div>
 						<!--end::Content-->
 						<!--begin::Illustration-->
@@ -76,6 +72,7 @@ License: For each use you must have a valid license purchased only from above li
 						<div class="w-lg-500px p-10 p-lg-15 mx-auto">
 							<!--begin::Form-->
 							<form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" action="{{route('login')}}" method="POST">
+								@csrf
 								<!--begin::Heading-->
 								<div class="text-center mb-10">
 									<!--begin::Title-->
@@ -121,7 +118,6 @@ License: For each use you must have a valid license purchased only from above li
 									</button>
 									<!--end::Submit button-->
 									<!--begin::Separator-->
-									<div class="text-center text-muted text-uppercase fw-bolder mb-5">or</div>
 									<!--end::Separator-->
 								</div>
 								<!--end::Actions-->
@@ -147,7 +143,6 @@ License: For each use you must have a valid license purchased only from above li
 		<script src="assets/js/scripts.bundle.js"></script>
 		<!--end::Global Javascript Bundle-->
 		<!--begin::Page Custom Javascript(used by this page)-->
-		<script src="assets/js/custom/authentication/sign-in/general.js"></script>
 		<!--end::Page Custom Javascript-->
 		<!--end::Javascript-->
 	</body>

@@ -2,7 +2,7 @@
     <!--begin::Brand-->
     <div class="header-brand">
         <!--begin::Logo-->
-        <a href="../../demo8/dist/index.html">
+        <a href="{{route('admin')}}">
             <img alt="Logo" src="assets/media/logos/logo-1-dark.svg" class="h-25px h-lg-25px" />
         </a>
         <!--end::Logo-->

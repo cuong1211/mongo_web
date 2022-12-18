@@ -9,6 +9,9 @@ use App\Http\Controllers\Backend\CompanyController;
 use App\Http\Controllers\Backend\InProductController;
 use App\Http\Controllers\Backend\StatisticalController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Middleware\CheckLogin;
+use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Auth\LogoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,10 +24,7 @@ use App\Http\Controllers\Frontend\FrontendController;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.main');
-});
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin','middleware' => CheckLogin::class], function () {
     Route::get('/', function () {
         return view('pages.main');
     })->name('admin');
@@ -32,7 +32,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('product', ProductController::class);
     Route::resource('order', OrderController::class);
     Route::resource('company', CompanyController::class);
-    Route::resource('receipt', ReceiptController::class);
+    // Route::resource('receipt', ReceiptController::class);
     Route::resource('in_product', InProductController::class);
     Route::resource('user', UserController::class);
     route::group(['prefix' => 'statistic'], function () {
@@ -42,6 +42,8 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Auth::routes();
+
+route::get('/signout',[App\Http\Controllers\Auth\LogoutController::class,'getLogout'])->name('signout');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
