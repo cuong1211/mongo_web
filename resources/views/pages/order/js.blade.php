@@ -27,7 +27,9 @@
 
                 data: 'name',
                 render: function(data, type, row, meta) {
-                    return data;
+                    return '<a href="#" class="text-gray-800 text-hover-primary mb-1 btn-detail" data-bs-toggle="modal" data-bs-target="#kt_modal_detail" data-data=\'' +
+                        JSON.stringify(row) +
+                        '\'>' + data + '</a>';
                 }
             },
             {
@@ -131,6 +133,24 @@
         $("#kt_modal_add_customer_form").trigger("reset");
 
     }
+    $(document).on('click', '.btn-detail', function(e) {
+        e.preventDefault();
+        var data = $(this).data('data');
+        console.log(data);
+        $('#order_id').text('Đơn hàng #'+data._id);
+        $('#date').text(data.date);
+        $('#name').text(data.name);
+        $('#email').text(data.email);
+        $('#address').text(data.address);
+        $('#phone').text(data.phone);
+        $('#note').text(data.note);
+        $('#price').text(data.product.price + ' VND');
+        $('#price_total').text(data.total + ' VND');
+        $('#status').text(data.status);
+        $('#product').text(data.product.name);
+        $('#kt_modal_detail').modal('show');
+    });
+
     $(document).on('click', '.btn-status', function(e) {
         e.preventDefault();
         var data = $(this).data('data');

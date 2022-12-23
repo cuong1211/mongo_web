@@ -32,6 +32,13 @@
                 }
             },
             {
+                
+                data: 'slug',
+                render: function(data, type, row, meta) {
+                    return data;
+                }
+            },
+            {
                 data: null,
                 className: 'text-end',
                 render: function(data, type, row, meta) {

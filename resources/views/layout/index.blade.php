@@ -21,7 +21,7 @@ License: For each use you must have a valid license purchased only from above li
 
 <body id="kt_body" class="header-tablet-and-mobile-fixed aside-enabled">
     <!--begin::Root-->
-    <div class="d-flex flex-column flex-root">
+    <div class="d-flex flex-column flex-root"  id="nonPrintable">
         <!--begin::Page-->
         <div class="page d-flex flex-row flex-column-fluid">
             <!--begin::Aside-->

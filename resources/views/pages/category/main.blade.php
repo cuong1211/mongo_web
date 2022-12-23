@@ -103,6 +103,7 @@ Quản lý mặt hàng
                                         </div>
                                     </th>
                                     <th class="min-w-125px">Tên măt hàng</th>
+                                    <th class="min-w-125px">Tên viết tắt</th>
                                     <th class="text-end min-w-70px"></th>
                                 </tr>
                                 <!--end::Table row-->
@@ -255,11 +256,11 @@ Quản lý mặt hàng
                                 <div class="modal-footer flex-center">
                                     <!--begin::Button-->
                                     <button type="reset" id="kt_modal_add_customer_cancel"
-                                        class="btn btn-light me-3">Discard</button>
+                                        class="btn btn-light me-3">Mặc định</button>
                                     <!--end::Button-->
                                     <!--begin::Button-->
                                     <button type="submit" id="kt_modal_add_customer_submit" class="btn btn-primary">
-                                        <span class="indicator-label">Submit</span>
+                                        <span class="indicator-label">Xác nhận</span>
                                         <span class="indicator-progress">Please wait...
                                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                     </button>
