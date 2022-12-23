@@ -3,36 +3,24 @@
         <div class="row">
             <div class="col-lg-3 col-md-6">
                 <div class="footer-box about-widget">
-                    <h2 class="widget-title">About us</h2>
-                    <p>Ut enim ad minim veniam perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.</p>
+                    <h2 class="widget-title">Thông tin về chúng tôi</h2>
+                    <p>Những con người đam mê và nhiệt huyết với bánh sinh nhật, giúp những ngày sinh nhật trở nên ý nghĩa hơn.</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="footer-box get-in-touch">
-                    <h2 class="widget-title">Get in Touch</h2>
+                    <h2 class="widget-title">Địa chỉ của hàng</h2>
                     <ul>
-                        <li>34/8, East Hukupara, Gifirtok, Sadan.</li>
-                        <li>support@fruitkha.com</li>
-                        <li>+00 111 222 3333</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="footer-box pages">
-                    <h2 class="widget-title">Pages</h2>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="services.html">Shop</a></li>
-                        <li><a href="news.html">News</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li>12/11, Ngõ 2001, Cầu Giao Bảy, Tp.Thái Nguyên.</li>
+                        <li>DTC195480201CLC0004@ictu.edu.vn</li>
+                        <li>+84 385123456</li>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="footer-box subscribe">
-                    <h2 class="widget-title">Subscribe</h2>
-                    <p>Subscribe to our mailing list to get the latest updates.</p>
+                    <h2 class="widget-title">Nhận thông báo về sản phẩm mới</h2>
+                    <p>Vui lòng nhập email để nhận những thông báo mới nhất về cửa hàng nhé.</p>
                     <form action="index.html">
                         <input type="email" placeholder="Email">
                         <button type="submit"><i class="fas fa-paper-plane"></i></button>

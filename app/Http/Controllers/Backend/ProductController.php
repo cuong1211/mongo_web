@@ -96,7 +96,9 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, $id)
     {
-        $this->productservice->edit($request, $id);
+        dd($request->all());
+        $data = $request->validated();
+        $this->productservice->edit($data, $id);
         return response()->json(
             [
                 'type' => 'success',

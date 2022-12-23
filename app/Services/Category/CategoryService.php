@@ -15,19 +15,21 @@ class CategoryService
         $index = Category::query()->get();
         return $index;
     }
-    public function create(CategoryRequest $request)
+    public function create($data)
     {
-        $create = Category::create($request->validated());
+        $create = Category::create($data);
         return $create;
     }
-    public function edit(CategoryRequest $request, $id)
+    public function edit($data, $id)
     {
 
         // $a = 'ObjectId';
         // $Category_old = $a."("."'".$id."'".")";
-        $Category = Category::where('_id', $id)
+        // dd($data);
+        $Category = Category::find($id)
             ->update([
-                'name' => $request->name,
+                'name' => $data['name'],
+                'slug' => $data['slug'],
             ]);
         // $Category = Category::find($obId)->update([
         //     'name' => $request->name,
@@ -38,7 +40,7 @@ class CategoryService
     }
     public function delete($id)
     {
-        $delete = Category::where('_id', $id)
+        $delete = Category::find($id)
             ->delete();
         return $delete;
     }

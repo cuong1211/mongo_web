@@ -23,9 +23,9 @@ class InProductService
     }
     public function edit($data, $id)
     {
+        $data = (object)$data;
         $InProduct = in_product::where('_id', $id)
             ->update([
-                'name' => $data->name,
                 'product_id' => $data->product_id,
                 'company_id' => $data->company_id,
                 'quantity' => $data->quantity,

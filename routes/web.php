@@ -45,12 +45,11 @@ Auth::routes();
 
 route::get('/signout',[App\Http\Controllers\Auth\LogoutController::class,'getLogout'])->name('signout');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/home', function () {
-    return view('pages.frontend.index');
-});
+
+Route::get('/', [App\Http\Controllers\Frontend\FrontendController::class, 'index'])->name('home');
 route::get('/product',[FrontendController::class,'getProduct'])->name('frontend.product');
 route::get('/cart',[App\Http\Controllers\Frontend\CartController::class,'index'])->name('cart.index');
 route::get('checkout/{id}',[App\Http\Controllers\Frontend\CartController::class,'getCheckout'])->name('cart.checkout');
+route::get('search',[FrontendController::class,'getProduct'])->name('frontend.search');
 // route::post('/Order',[FrontendController::class,'postOrder'])->name('order.post');

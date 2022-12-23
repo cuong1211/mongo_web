@@ -5,7 +5,7 @@
                 <div class="main-menu-wrap">
                     <!-- logo -->
                     <div class="site-logo">
-                        <a href="index.html">
+                        <a href="{{route('home')}}">
                             <img src="assets/img/nhc-logo1.png" alt="">
                         </a>
                     </div>
@@ -14,29 +14,28 @@
                     <!-- menu start -->
                     <nav class="main-menu">
                         <ul>
-                            <li class="current-list-item"><a href="#">Home</a>
-                                <ul class="sub-menu">
-                                    <li><a href="index.html">Static Home</a></li>
-                                    <li><a href="index_2.html">Slider Home</a></li>
-                                </ul>
-                            </li>
-                            
-                            <li><a href="#">Pages</a>
-                                <ul class="sub-menu">
-                                    <li><a href="404.html">404 page</a></li>
-                                    <li><a href="about.html">About</a></li>
-                                    <li><a href="cart.html">Cart</a></li>
-                                    <li><a href="checkout.html">Check Out</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                    <li><a href="news.html">News</a></li>
-                                    <li><a href="{{route('frontend.product')}}">Shop</a></li>
-                                </ul>
-                            </li>
+                            @if (Request::route()->getName() == 'home')
+                                <li class="current-list-item"><a href="{{route('home')}}">Trang chủ</a>
+                                </li>
+                            @else
+                                <li><a href="{{route('home')}}">Trang chủ</a>
+                                </li>
+                            @endif
+                            @if (Request::route()->getName() == 'frontend.product')
+                                <li class="current-list-item"><a href="{{route('frontend.product')}}">Sản phẩm</a>
+                                </li>
+                            @else
+                                <li><a href="{{route('frontend.product')}}">Sản phẩm</a>
+                                </li>
+                            @endif
                             
                             <li>
                                 <div class="header-icons">
-                                    
-                                  
+                                @if (Request::route()->getName() == 'frontend.product' ||  Request::route()->getName() == 'frontend.search')
+                                    <a class="mobile-hide search-bar-icon"><i class="fas fa-search"></i></a>
+                                @else
+
+                                @endif
                                 </div>
                             </li>
                         </ul>

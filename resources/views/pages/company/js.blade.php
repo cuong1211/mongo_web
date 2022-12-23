@@ -73,9 +73,27 @@
     dt.on('draw', function() {
         KTMenu.createInstances();
     });
+    $('.btn-close').on('click', function() {
+        form_reset();
+        $('#kt_modal_add_customer').modal('hide');
+        $('#kt_modal_status').modal('hide');
+    });
+    $(' #kt_modal_add_customer_cancel').on('click', function() {
+        form_reset();
+    });
+
+    function form_reset() {
+        $("#kt_modal_add_customer").modal({
+            'backdrop': 'static',
+            'keyboard': false
+        });
+        $("#kt_modal_add_customer_form").trigger("reset");
+
+    }
     $(document).on('click', '.btn-edit', function (e) {
         console.log('edit')
         e.preventDefault();
+        form_reset();
         let data = $(this).data('data');
         let modal = $('#kt_modal_add_customer_form');
         modal.find('.modal-title').text('Sửa thông tin');
@@ -89,6 +107,7 @@
     $(document).on('click', '.btn-add', function (e) {
         console.log('add')
         e.preventDefault();
+        form_reset();
         let modal = $('#kt_modal_add_customer_form');
         modal.find('.modal-title').text('Thêm nhà cung cấp');
         modal.find('input[name=id]').val('');
@@ -121,10 +140,10 @@
                 }
             },
             error: function(data) {
-                $.each(data.responseJSON.errors, function(key, value) {
-                    // $('.alert-danger').css('display', 'block');
-                    $('.alert-danger').show();
-                    $('.alert-danger').append('<strong><li>' + value + '</li></strong>');
+                let errors = data.responseJSON.errors;
+                console.log(errors);
+                $.each(errors, function(key, value) {
+                    notification('error', 'Error', value);
                 });
             }
         });
@@ -134,7 +153,7 @@
         let id = $(this).data('id');
         console.log($(this).data())
         $.ajax({
-            url: "{{route('product.destroy','')}}" + '/' + id,
+            url: "{{route('company.destroy','')}}" + '/' + id,
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
@@ -142,16 +161,14 @@
             success: function(data) {
                 notification(data.type, data.title, data.content);
                 if (data.type == 'success') {
-                    alert(data.title);
                     dt.ajax.reload(null, false);
                 }
             },
             error: function(data) {
-                $('.alert-danger').html('');
-                $.each(data.responseJSON.errors, function(key, value) {
-                    // $('.alert-danger').css('display', 'block');
-                    $('.alert-danger').show();
-                    $('.alert-danger').append('<strong><li>' + value + '</li></strong>');
+                let errors = data.responseJSON.errors;
+                console.log(errors);
+                $.each(errors, function(key, value) {
+                    notification('error', 'Error', value);
                 });
             }
         });

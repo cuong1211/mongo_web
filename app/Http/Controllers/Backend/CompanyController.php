@@ -92,9 +92,10 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CompanyRequest $request, $id)
     {
-        $this->companyservice->edit($request, $id);
+        $data = $request->validated();
+        $this->companyservice->edit($data, $id);
         return response()->json(
             [
                 'type' => 'success',
@@ -113,6 +114,14 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->companyservice->delete($id);
+        return response()->json(
+            [
+                'type' => 'success',
+                'title' => 'success',
+                'content' => 'Xoá thành công'
+            ],
+            200
+        );
     }
 }

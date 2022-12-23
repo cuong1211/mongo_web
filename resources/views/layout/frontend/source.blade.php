@@ -29,6 +29,7 @@
 <link rel="stylesheet" href="assets/css/main.css">
 <!-- responsive -->
 <link rel="stylesheet" href="assets/css/responsive.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
 @section('scripts')
     <script src="assets/js/jquery-1.11.3.min.js"></script>
@@ -50,4 +51,5 @@
     <script src="assets/js/sticker.js"></script>
     <!-- main js -->
     <script src="assets/js/main.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 @endsection

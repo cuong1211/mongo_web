@@ -15,17 +15,16 @@
             url: "{{ route('product.show', 'get-list') }}",
             type: 'GET'
         },
-        columns: [
-            {
+        columns: [{
                 data: '_id',
                 render: function(data, type, row, meta) {
-                    return '<div class="form-check form-check-sm form-check-custom form-check-solid">\n'+
-                            '<input class="form-check-input" type="checkbox" value="'+data+'"/>\n'+
+                    return '<div class="form-check form-check-sm form-check-custom form-check-solid">\n' +
+                        '<input class="form-check-input" type="checkbox" value="' + data + '"/>\n' +
                         '</div>';
                 }
             },
             {
-                
+
                 data: 'name',
                 render: function(data, type, row, meta) {
                     return data;
@@ -75,9 +74,27 @@
     dt.on('draw', function() {
         KTMenu.createInstances();
     });
-    $(document).on('click', '.btn-edit', function (e) {
+    $('.btn-close').on('click', function() {
+        form_reset();
+        $('#kt_modal_add_customer').modal('hide');
+    });
+    $(' #kt_modal_add_customer_cancel').on('click', function() {
+        form_reset();
+    });
+
+    function form_reset() {
+        $("#kt_modal_add_customer").modal({
+            'backdrop': 'static',
+            'keyboard': false
+        });
+        $("#kt_modal_add_customer_form").trigger("reset");
+        $("#blah").attr("src", "")
+
+    }
+    $(document).on('click', '.btn-edit', function(e) {
         console.log('edit')
         e.preventDefault();
+        form_reset();
         let data = $(this).data('data');
         let modal = $('#kt_modal_add_customer_form');
         modal.find('.modal-title').text('Sửa sản phẩm');
@@ -85,29 +102,30 @@
         modal.find('input[name=name]').val(data.name);
         modal.find('input[name=description]').val(data.description);
         modal.find('input[name=price]').val(data.price);
+        modal.find('select[name=categoty_id]').val(data.category_id);
         // $('#kt_modal_add_customer_form').modal('show'); 
     });
-    $(document).on('click', '.btn-add', function (e) {
+    $(document).on('click', '.btn-add', function(e) {
         console.log('add')
         e.preventDefault();
+        form_reset();
         let modal = $('#kt_modal_add_customer_form');
         modal.find('.modal-title').text('Thêm mới sản phẩm');
         modal.find('input[name=id]').val('');
-        modal.trigger('reset');
         // $('#kt_modal_add_customer_form').modal('show'); 
     });
-    $('#kt_modal_add_customer_form').on('submit', function (e){
+    $('#kt_modal_add_customer_form').on('submit', function(e) {
         e.preventDefault();
         var formData = new FormData(this);
         let data = $(this).serialize(),
             type = 'POST',
-            url = "{{route('product.store')}}",
+            url = "{{ route('product.store') }}",
             id = $('form#kt_modal_add_customer_form input[name=id]').val();
         if (parseInt(id)) {
             console.log('edit');
             type = 'PUT';
             url = url + '/' + id;
-            }
+        }
         $.ajax({
             url: url,
             headers: {
@@ -126,17 +144,20 @@
                 }
             },
             error: function(data) {
-                console.log('error');
-                printErrorMsg(data.error);
+                let errors = data.responseJSON.errors;
+                $.each(errors, function(key, value) {
+                    notification('error', 'Error', value);
+                });
             }
         });
     });
-    $(document).on('click', '.btn-delete', function (e) {
+
+    $(document).on('click', '.btn-delete', function(e) {
         e.preventDefault();
         let id = $(this).data('id');
         console.log($(this).data())
         $.ajax({
-            url: "{{route('product.destroy','')}}" + '/' + id,
+            url: "{{ route('product.destroy', '') }}" + '/' + id,
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
@@ -152,12 +173,12 @@
             }
         });
     });
-    function printErrorMsg (msg) {
-            $(".print-error-msg").find("ul").html('');
-            $(".print-error-msg").css('display','block');
-            $.each( msg, function( key, value ) {
-                $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
-            });
-        }
 
+    function printErrorMsg(msg) {
+        $(".print-error-msg").find("ul").html('');
+        $(".print-error-msg").css('display', 'block');
+        $.each(msg, function(key, value) {
+            $(".print-error-msg").find("ul").append('<li>' + value + '</li>');
+        });
+    }
 </script>

@@ -23,10 +23,16 @@ class OrderService
     public function edit($data, $id)
     {
         // dd($data);
-        $order = Order::where('_id', $id)
-            ->update([
+        if(isset($data['email'])){
+            $email = $data['email'];
+        }
+        else{
+            $email = '';
+        }
+        $order = Order::where('_id', $id);
+        $order->update([
                 'name' => $data['name'],
-                'email' => $data['email'],
+                'email' => $email,
                 'address' => $data['address'],
                 'phone' => $data['phone'],
                 'product_id' => $data['product_id'],

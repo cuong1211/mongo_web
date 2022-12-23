@@ -1,8 +1,7 @@
-@extends('layout.source')
+@extends('layout.index')
 @section('title')
     Quản lý sản phẩm
 @endsection
-@extends('layout.header')
 @section('breadcrumb')
     <div class="page-title d-flex flex-column me-5">
         <!--begin::Title-->
@@ -27,7 +26,6 @@
         <!--end::Breadcrumb-->
     </div>
 @endsection
-@extends('layout.index')
 @section('content')
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Post-->

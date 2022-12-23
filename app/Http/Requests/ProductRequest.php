@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class ProductRequest extends FormRequest
 {
@@ -23,26 +25,57 @@ class ProductRequest extends FormRequest
      */
     public function rules()
     {
-        return ['name' => 'max:50'] + ($this->isMethod('POST') ? $this->store() : $this->update());
+        $arr = explode('@', $this->route()->getActionName());
+        $action = $arr[1];
+        switch ($action) {
+            case 'store': {
+                    return [
+                        'name' => 'required|unique:products|max:255',
+                        'description' => 'nullable',
+                        'price' => 'required',
+                        'category_id' => 'required',
+                        'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                    ];
+                }
+            case 'update': {
+                    return [
+                        'name' => 'required| unique:products|max:255',
+                        'description' => 'nullable',
+                        'price' => 'required',
+                        'category_id' => 'required',
+                        'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                    ];
+                }
+            default:
+                break;
+        }
     }
-    protected function store()
+    public function messages()
     {
         return [
-            'name' => 'nullable| unique:products|max:255',
-            'description' => 'nullable',
-            'price' => 'nullable',
-            'category_id' => 'nullable',
-            'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name.required' => 'Vui lòng nhập tên sản phẩm.',
+            'name.unique' => 'Tên sản phẩm đã được sử dụng.',
+            'name.max' => 'Tên sản phẩm quá dài.',
+            'price.required' => 'Vui lòng nhập giá sản phẩm.',
+            'category_id.required' => 'Vui lòng chọn loại hàng.',
+            'img.required' => 'Vui lòng chọn ảnh sản phẩm.',
+            'img.image' => 'File phải là đỉnh dạng ảnh.',
+            'img.mimes' => 'Ảnh phải thuộc các định dạng sau:jpeg,png,jpg,gif,svg.',
+            'img.max' => 'Tên ảnh quá dài.',
         ];
     }
+    protected function failedValidation(Validator $validator)
+    {
 
-    protected function update()
-    {
-        return [
-            'name' => 'required|unique:products|max:255',
-            'description' => 'nullable',
-            'price' => 'required',
-            'category_id' => 'required',
-        ];
+        $errors = $validator->errors()->all();
+        throw new HttpResponseException(
+            response()->json(
+                [
+                    'type' => res_type('error'),
+                    'title' => res_title('validate_error'),
+                    'content' => $errors,
+                ],
+            )
+        );
     }
 }

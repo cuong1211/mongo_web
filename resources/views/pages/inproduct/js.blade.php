@@ -72,6 +72,22 @@
     dt.on('draw', function() {
         KTMenu.createInstances();
     });
+    $('.btn-close').on('click', function() {
+        form_reset();
+        $('#kt_modal_add_customer').modal('hide');
+    });
+    $(' #kt_modal_add_customer_cancel').on('click', function() {
+        form_reset();
+    });
+
+    function form_reset() {
+        $("#kt_modal_add_customer").modal({
+            'backdrop': 'static',
+            'keyboard': false
+        });
+        $("#kt_modal_add_customer_form").trigger("reset");
+    }
+
     $(document).on('click', '.btn-edit', function(e) {
         console.log('edit')
         e.preventDefault();
@@ -93,7 +109,6 @@
         modal.find('.modal-title').text('Mua thêm sản phẩm');
         modal.find('input[name=id]').val('');
         modal.trigger('reset');
-        $('.alert-danger').hide();
         // $('#kt_modal_add_customer_form').modal('show'); 
     });
     var formData = new FormData($('#kt_modal_add_customer_form')[0]);
@@ -123,10 +138,10 @@
                 }
             },
             error: function(data) {
-                $.each(data.responseJSON.errors, function(key, value) {
-                    // $('.alert-danger').css('display', 'block');
-                    $('.alert-danger').show();
-                    $('.alert-danger').append('<strong><li>' + value + '</li></strong>');
+                let errors = data.responseJSON.errors;
+                console.log(errors);
+                $.each(errors, function(key, value) {
+                    notification('error', 'Error', value);
                 });
             }
         });
@@ -144,16 +159,14 @@
             success: function(data) {
                 notification(data.type, data.title, data.content);
                 if (data.type == 'success') {
-                    alert(data.title);
                     dt.ajax.reload(null, false);
                 }
             },
             error: function(data) {
-                $('.alert-danger').html('');
-                $.each(data.responseJSON.errors, function(key, value) {
-                    // $('.alert-danger').css('display', 'block');
-                    $('.alert-danger').show();
-                    $('.alert-danger').append('<strong><li>' + value + '</li></strong>');
+                let errors = data.responseJSON.errors;
+                console.log(errors);
+                $.each(errors, function(key, value) {
+                    notification('error', 'Error', value);
                 });
             }
         });

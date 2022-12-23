@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class CategoryRequest extends FormRequest
 {
@@ -23,19 +25,50 @@ class CategoryRequest extends FormRequest
      */
     public function rules()
     {
-        return ['name' => 'required|min:3|max:50'] + ($this->isMethod('POST') ? $this->store() : $this->update());
+        $arr = explode('@', $this->route()->getActionName());
+        $action = $arr[1];
+        switch ($action) {
+            case 'store': {
+                    return [
+                        'name' => 'required|unique:categories|max:255',
+                        'slug' => 'required|unique:categories|max:10',
+                    ];
+                }
+            case 'update': {
+                    return [
+                        'name' => 'required|max:255',
+                        'slug' => 'required|max:10',
+                    ];
+                }
+            default:
+                break;
+        }
     }
-    protected function store()
+
+    public function messages()
     {
         return [
-            'name' => 'required|max:255',
+            'name.required' => 'Tên mặt hàng không được để trống',
+            'name.unique' => 'Tên mặt hàng đã tồn tại',
+            'name.max' => 'Tên mặt hàng không được quá 255 ký tự',
+            'slug.required' => 'Tên viết tắt không được để trống',
+            'slug.unique' => 'Tên viết tắt đã tồn tại',
+            'slug.max' => 'Tên viết tắt không được quá 10 ký tự',
         ];
     }
 
-    protected function update()
+    protected function failedValidation(Validator $validator)
     {
-        return [
-            'name' => 'required|unique:catogories|max:255',
-        ];
+
+        $errors = $validator->errors()->all();
+        throw new HttpResponseException(
+            response()->json(
+                [
+                    'type' => res_type('error'),
+                    'title' => res_title('validate_error'),
+                    'content' => $errors,
+                ],
+            )
+        );
     }
 }

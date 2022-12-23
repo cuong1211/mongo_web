@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Services\Order\OrderService;
 use App\Http\Requests\OrderRequest;
 use App\Models\Order;
+use App\Models\Product;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\DB;
 
@@ -29,7 +30,8 @@ class OrderController extends Controller
         // $order = $this->orderservice->index();
         // $order = (object)$order_array;
         // dd($order);
-        return view('pages.order.main');
+        $product = Product::query()->get();
+        return view('pages.order.main', compact('product'));
         // $order = Order::all();
         // return Datatables::of($order)->make(true);
     }
@@ -51,9 +53,27 @@ class OrderController extends Controller
      */
     public function store(OrderRequest $request)
     {
+        // dd($request->all());
         $data = $request->validated();
-        $this->orderservice->create($data);
-        return "success";
+        $store = $this->orderservice->create($data);
+        if ($store) {
+            return response()->json(
+                [
+                    'type' => 'success',
+                    'title' => 'success',
+                    'content' => 'Thêm đơn hàng thành công'
+                ]
+            );
+        } else {
+            return response()->json(
+                [
+                    'type' => 'error',
+                    'title' => 'error',
+                    'content' => 'Thêm đơn hàng thất bại'
+                ]
+            );
+        }
+
     }
 
     /**
@@ -95,14 +115,24 @@ class OrderController extends Controller
     public function update(OrderRequest $request, $id)
     {
         $data = $request->validated();
-        $this->orderservice->edit($data, $id);
-        return response()->json(
-            [
-                'type' => 'success',
-                'title' => 'Sửa thành công'
-            ],
-            200
-        );
+        $update = $this->orderservice->edit($data, $id);
+        if ($update) {
+            return response()->json(
+                [
+                    'type' => 'success',
+                    'title' => 'success',
+                    'content' => 'Sửa đơn hàng thành công'
+                ]
+            );
+        } else {
+            return response()->json(
+                [
+                    'type' => 'error',
+                    'title' => 'error',
+                    'content' => 'Sửa đơn hàng thất bại'
+                ]
+            );
+        }
     }
 
     /**
@@ -113,13 +143,23 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        $this->orderservice->delete($id);
-        return response()->json(
-            [
-                'type' => 'success',
-                'title' => 'Xoá thành công'
-            ],
-            200
-        );
+        $delete = $this->orderservice->delete($id);
+        if ($delete) {
+            return response()->json(
+                [
+                    'type' => 'success',
+                    'title' => 'success',
+                    'content' => 'Xoá đơn hàng thành công'
+                ]
+            );
+        } else {
+            return response()->json(
+                [
+                    'type' => 'error',
+                    'title' => 'error',
+                    'content' => 'Xoá đơn hàng thất bại'
+                ]
+            );
+        }
     }
 }

@@ -2,8 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
-use PharIo\Manifest\Email;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class OrderRequest extends FormRequest
 {
@@ -24,37 +25,68 @@ class OrderRequest extends FormRequest
      */
     public function rules()
     {
-        return ['name' => 'required|min:3|max:50'] + ($this->isMethod('POST') ? $this->store() : $this->update());
-    }
-    protected function store()
-    {
-        return [
-        'name' => 'required|max:255',
-        'email' => 'nullable|email',
-        'address' => 'required',
-        'phone' => 'required|numeric',
-        'note' => 'required',
-        'product_id' => 'required',
-        'quatity '=> 'nullable|numeric',
-        'total' => 'required',
-        'date' => 'required',
-        'status' => 'required',
-        ];
+        $arr = explode('@', $this->route()->getActionName());
+        $action = $arr[1];
+        switch ($action) {
+            case 'store': {
+                    return [
+                        'name' => 'required|max:255',
+                        'email' => 'nullable|email',
+                        'address' => 'required',
+                        'phone' => 'required|numeric',
+                        'note' => 'nullable',
+                        'product_id' => 'required',
+                        'quantity ' => 'nullable|numeric',
+                        'total' => 'nullable',
+                        'date' => 'required',
+                        'status' => 'nullable',
+                    ];
+                }
+            case 'update': {
+                    return [
+                        'name' => 'required|max:255',
+                        'email' => 'nullable|email',
+                        'address' => 'required',
+                        'phone' => 'required|numeric',
+                        'note' => 'nullable',
+                        'product_id' => 'required',
+                        'quantity ' => 'nullable|numeric',
+                        'total' => 'nullable',
+                        'date' => 'required',
+                        'status' => 'nullable',
+                    ];
+                }
+            default:
+                break;
+        }
     }
 
-    protected function update()
+    public function messages()
     {
         return [
-            'name' => 'required|max:255',
-            'email' => 'nullable|email',
-            'address' => 'required',
-            'phone' => 'required|numeric',
-            'note' => 'required',
-            'product_id' => 'required',
-            'quatity '=> 'nullable|numeric',
-            'total' => 'required',
-            'date' => 'required',
-            'status' => 'required',
+            'name.required' => 'Vui lòng nhập tên đơn hàng.',
+            'name.max' => 'Tên đơn hàng quá dài.',
+            'email.email' => 'Vui lòng nhấp đúng định dạng email.',
+            'address.required' => 'Vui lòng nhập địa chỉ.',
+            'phone.required' => 'Vui lòng nhập số điện thoại.',
+            'phone.numeric' => 'Số điện thoại phải là số.',
+            'product_id.required' => 'Vui lòng chọn sản phẩm.',
+            'quantity.numeric' => 'Số lượng phải là số.',
+            'date.required' => 'Vui lòng nhập ngày giao.',
         ];
+    }
+    protected function failedValidation(Validator $validator)
+    {
+
+        $errors = $validator->errors()->all();
+        throw new HttpResponseException(
+            response()->json(
+                [
+                    'type' => res_type('error'),
+                    'title' => res_title('validate_error'),
+                    'content' => $errors,
+                ],
+            )
+        );
     }
 }

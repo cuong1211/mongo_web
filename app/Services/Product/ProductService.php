@@ -32,15 +32,16 @@ class ProductService
         }
         return $create;
     }
-    public function edit(ProductRequest $request, $id)
+    public function edit($data, $id)
     {
-
-        $Product = Product::where('_id', $id)
+        $data = (object)$data;
+        dd($data);
+        $Product = Product::find($id)
             ->update([
-                'name' => $request->name,
-                'description' => $request->description,
-                'price' => $request->price,
-                'category_id' => $request->category_id,
+                'name' => $data->name,
+                'description' => $data->description,
+                'price' => $data->price,
+                'category_id' => $data->category_id,
             ]);
         // $Product = Product::find($obId)->update([
         //     'name' => $request->name,

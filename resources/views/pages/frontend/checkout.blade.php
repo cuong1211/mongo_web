@@ -37,7 +37,7 @@
                                                 <input type="text" placeholder="total" name="total"
                                                     value="{{ $product->price }}" hidden>
                                                 <input type="text" placeholder="product" name="status"
-                                                    value="{{App\Enums\StatusType::Pending}}" hidden>
+                                                    value="{{ App\Enums\StatusType::Pending }}" hidden>
                                                 <button type="submit">
                                                     <span class="boxed-btn">Place Order
                                                     </span>
@@ -119,6 +119,48 @@
 @endsection
 @push('jsfrontend')
     <script>
+        //hiển thị thông báo
+        function notification(type, title, content) {
+            title = '';
+            if (Array.isArray(content)) {
+                let string = '';
+                $.each(content, function(index, item) {
+                    string += item + '<br/>';
+                });
+                content = string;
+            }
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toastr-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "3000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+            switch (type) {
+                case 'success':
+                    toastr.success(content, title);
+                    break;
+                case 'error':
+                    toastr.error(content, title);
+                    break;
+                case 'warning':
+                    toastr.warning(content, title);
+                    break;
+                default:
+                    toastr.warning('Không xác định được thông báo', 'Cảnh báo!');
+                    break;
+            }
+        }
         $('#form_add_order').on('submit', function(e) {
             e.preventDefault();
             let data = $(this).serialize(),
@@ -132,12 +174,19 @@
                 type: type,
                 data: data,
                 success: function(data) {
+                    toastr[data.type](data.content, data.title);
                     if (data.type == 'success') {
-                        alert(data.title);
+                        setTimeout(function() {
+                            window.location.href = "{{ route('home') }}";
+                        }, 1000);
                     }
                 },
                 error: function(data) {
-                    console.log('error');
+                    let errors = data.responseJSON.errors;
+                    console.log(errors);
+                    $.each(errors, function(key, value) {
+                        toastr[data.type](value, 'Error');
+                    });
                 }
             });
         });

@@ -20,22 +20,15 @@ class CompanyService
         $create = company::create($data);
         return $create;
     }
-    public function edit(CompanyRequest $request, $id)
+    public function edit($data, $id)
     {
-
-        // $a = 'ObjectId';
-        // $Company_old = $a."("."'".$id."'".")";
         $Company = company::where('_id', $id)
             ->update([
-                'name' => $request->name,
-                'description' => $request->description,
-                'price' => $request->price,
+                'name' => $data['name'],
+                'address' => $data['address'],
+                'phone' => $data['phone'],
+                'email' => $data['email'],
             ]);
-        // $Company = Company::find($obId)->update([
-        //     'name' => $request->name,
-        //     'description' => $request->description,
-        //     'price' => $request->price,
-        // ]);
         return $Company;
     }
     public function delete($id)

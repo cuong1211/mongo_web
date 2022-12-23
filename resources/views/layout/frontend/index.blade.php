@@ -30,17 +30,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-12">
-                    <p>Copyrights &copy; 2019 - <a href="https://imransdesign.com/">Imran Hossain</a>, All Rights
-                        Reserved.</p>
+                    <p>Bản quyền năm &copy; 2022 - <a href="https://imransdesign.com/">Ninh Huy Cường</a>
                 </div>
                 <div class="col-lg-6 text-right col-md-12">
                     <div class="social-icons">
                         <ul>
-                            <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li>
+                            <li><a href="https://www.facebook.com/ANBU0012" target="_blank"><i class="fab fa-facebook-f"></i>Ninh</a></li>
+                            <li><a href="https://www.facebook.com/maiduchuy01" target="_blank"><i class="fab fa-facebook-f">Huy</i></a></li>
+                            <li><a href="https://www.facebook.com/thaicuong1211/" target="_blank"><i class="fab fa-facebook-f">Cuong</i></a></li>
                         </ul>
                     </div>
                 </div>

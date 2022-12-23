@@ -58,9 +58,27 @@
     dt.on('draw', function() {
         KTMenu.createInstances();
     });
+    $('.btn-close').on('click', function() {
+        form_reset();
+        $('#kt_modal_add_customer').modal('hide');
+        $('#kt_modal_status').modal('hide');
+    });
+    $(' #kt_modal_add_customer_cancel').on('click', function() {
+        form_reset();
+    });
+
+    function form_reset() {
+        $("#kt_modal_add_customer").modal({
+            'backdrop': 'static',
+            'keyboard': false
+        });
+        $("#kt_modal_add_customer_form").trigger("reset");
+
+    }
     $(document).on('click', '.btn-edit', function (e) {
         console.log('edit')
         e.preventDefault();
+        form_reset();
         let data = $(this).data('data');
         let modal = $('#kt_modal_add_customer_form');
         modal.find('.modal-title').text('Sửa thông tin');
@@ -71,6 +89,7 @@
     $(document).on('click', '.btn-add', function (e) {
         console.log('add')
         e.preventDefault();
+        form_reset();
         let modal = $('#kt_modal_add_customer_form');
         modal.find('.modal-title').text('Thêm mặt hàng');
         modal.find('input[name=id]').val('');
@@ -96,15 +115,19 @@
             type: type,
             data: data,
             success: function(data) {
+                notification(data.type, data.title, data.content);
                 if (data.type == 'success') {
-                    alert(data.title);
                     dt.ajax.reload(null, false);
                     $('#kt_modal_add_customer_form').trigger('reset');
                     $('#kt_modal_add_customer').modal('hide');
                 }
             },
             error: function(data) {
-                console.log('error');
+                let errors = data.responseJSON.errors;
+                console.log(errors);
+                $.each(errors, function(key, value) {
+                    notification('error', 'Error', value);
+                });
             }
         });
     });
@@ -119,13 +142,17 @@
             },
             type: 'DELETE',
             success: function(data) {
+                notification(data.type, data.title, data.content);
                 if (data.type == 'success') {
-                    alert(data.title);
                     dt.ajax.reload(null, false);
                 }
             },
             error: function(data) {
-                console.log('error');
+                let errors = data.responseJSON.errors;
+                console.log(errors);
+                $.each(errors, function(key, value) {
+                    notification('error', 'Error', value);
+                });
             }
         });
     });

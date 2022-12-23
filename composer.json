@@ -17,6 +17,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "~3.5",
         "mongodb/mongodb": "^1.12",
+        "spatie/laravel-searchable": "^1.11",
         "tymon/jwt-auth": "*",
         "yajra/laravel-datatables-oracle": "^9.21"
     },
@@ -33,7 +34,10 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/Http/Helpers/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

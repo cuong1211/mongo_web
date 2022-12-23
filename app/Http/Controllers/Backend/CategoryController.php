@@ -44,12 +44,13 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        // $data = $request->validate();
-        $this->categoryservice->create($request);
+        $data = $request->validated();
+        $this->categoryservice->create($data);
         return response()->json(
             [
                 'type' => 'success',
-                'title' => 'Thêm thành công'
+                'title' => 'success',
+                'content' => 'Thêm thành công'
             ],
             200
         );
@@ -81,7 +82,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -91,9 +92,18 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        //
+        $data = $request->validated();
+        $this->categoryservice->edit($data,$id);
+        return response()->json(
+            [
+                'type' => 'success',
+                'title' => 'success',
+                'content' => 'Sửa thành công'
+            ],
+            200
+        );
     }
 
     /**
@@ -104,6 +114,14 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->categoryservice->delete($id);
+        return response()->json(
+            [
+                'type' => 'success',
+                'title' => 'success',
+                'content' => 'Xoá thành công'
+            ],
+            200
+        );
     }
 }

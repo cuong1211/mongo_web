@@ -10,6 +10,7 @@ class Category extends Model
     use HasFactory;
     protected $fillable = [
         'name',
+        'slug',
     ];
     protected $dates = ['created_at', 'updated_at'];
     public function product()

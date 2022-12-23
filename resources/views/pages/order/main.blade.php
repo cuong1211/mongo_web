@@ -1,31 +1,31 @@
 @extends('layout.source')
 @section('title')
-Quản lý đơn hàng
+    Quản lý đơn hàng
 @endsection
 @extends('layout.header')
 @section('breadcrumb')
-<div class="page-title d-flex flex-column me-5">
-    <!--begin::Title-->
-    <h1 class="d-flex flex-column text-dark fw-bolder fs-3 mb-0">Quản lý đơn hàng</h1>
-    <!--end::Title-->
-    <!--begin::Breadcrumb-->
-    <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 pt-1">
-        <!--begin::Item-->
-        <li class="breadcrumb-item text-muted">
-            <a href="{{route('admin')}}" class="text-muted text-hover-primary">Trang chủ</a>
-        </li>
-        <!--end::Item-->
-        <!--begin::Item-->
-        <li class="breadcrumb-item">
-            <span class="bullet bg-gray-200 w-5px h-2px"></span>
-        </li>
-        <!--end::Item-->
-        <!--begin::Item-->
-        <li class="breadcrumb-item text-dark">Quản lý đơn hàng</li>
-        <!--end::Item-->
-    </ul>
-    <!--end::Breadcrumb-->
-</div>
+    <div class="page-title d-flex flex-column me-5">
+        <!--begin::Title-->
+        <h1 class="d-flex flex-column text-dark fw-bolder fs-3 mb-0">Quản lý đơn hàng</h1>
+        <!--end::Title-->
+        <!--begin::Breadcrumb-->
+        <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 pt-1">
+            <!--begin::Item-->
+            <li class="breadcrumb-item text-muted">
+                <a href="{{ route('admin') }}" class="text-muted text-hover-primary">Trang chủ</a>
+            </li>
+            <!--end::Item-->
+            <!--begin::Item-->
+            <li class="breadcrumb-item">
+                <span class="bullet bg-gray-200 w-5px h-2px"></span>
+            </li>
+            <!--end::Item-->
+            <!--begin::Item-->
+            <li class="breadcrumb-item text-dark">Quản lý đơn hàng</li>
+            <!--end::Item-->
+        </ul>
+        <!--end::Breadcrumb-->
+    </div>
 @endsection\
 @extends('layout.index')
 @section('content')
@@ -66,7 +66,7 @@ Quản lý đơn hàng
                             <!--begin::Toolbar-->
                             <div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base">
                                 <!--begin::Filter-->
-                                
+
                                 <!--end::Filter-->
                                 <!--begin::Add customer-->
                                 <button type="button" class="btn btn-primary btn-add" data-bs-toggle="modal"
@@ -186,13 +186,53 @@ Quản lý đơn hàng
                                         </div>
                                         <!--end::Input group-->
                                         <!--begin::Input group-->
-                                        <div class="fv-row mb-15">
+                                        <div class="fv-row mb-7">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-bold mb-2">Địa chỉ</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="text" class="form-control form-control-solid" placeholder=""
+                                                name="address" />
+                                            <!--end::Input-->
+                                        </div>
+                                        <div class="fv-row mb-7">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-bold mb-2">Số điện thoại</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="number" class="form-control form-control-solid" placeholder=""
+                                                name="phone" />
+                                            <!--end::Input-->
+                                        </div>
+                                        <div class="fv-row mb-7">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-bold mb-2">Sản phẩm:</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <select name="product_id" id="select_product" autofocus
+                                                class="form-select form-select-solid" tabindex="-1" aria-hidden="true">
+                                                @foreach ($product as $item)
+                                                    <option value="{{ $item->id }}" data-price="{{$item->price}}">{{ $item->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <!--end::Input-->
+                                        </div>
+                                        <div class="fv-row mb-7">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-bold mb-2">Ngày giao</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="date" class="form-control form-control-solid" placeholder=""
+                                                name="date" />
+                                            <!--end::Input-->
+                                        </div>
+                                        <div class="fv-row mb-7">
                                             <!--begin::Label-->
                                             <label class="fs-6 fw-bold mb-2">Ghi chú</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
                                             <input type="text" class="form-control form-control-solid" placeholder=""
-                                                name="description" />
+                                                name="note" />
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -202,10 +242,12 @@ Quản lý đơn hàng
                                             <label class="fs-6 fw-bold mb-2">Tổng tiền</label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="number" class="form-control form-control-solid" placeholder=""
-                                                name="price" />
+                                            <input type="text" id="total" class="form-control form-control-solid" placeholder=""
+                                                name="total" readonly />
                                             <!--end::Input-->
                                         </div>
+                                        <input type="text" id="quantity" name="quantity" value="1" hidden>
+                                        <input type="hidden" name="status" value="1">
                                         <!--end::Input group-->
                                     </div>
                                     <!--end::Scroll-->
@@ -266,9 +308,9 @@ Quản lý đơn hàng
                                 <div class="modal-body py-10 px-lg-17">
                                     <!--begin::Scroll-->
                                     <div class="scroll-y me-n7 pe-7" id="kt_modal_add_customer_scroll">
-                                        <p><input type="hidden" placeholder="" name="id" value="" >
+                                        <p><input type="hidden" placeholder="" name="id" value="">
                                         </p>
-                                        <p><input type="hidden" placeholder="" name="name" ></p>
+                                        <p><input type="hidden" placeholder="" name="name"></p>
                                         <p><input type="hidden" placeholder=""name="email" hidden></p>
                                         <p><input type="hidden" placeholder=""name="address" hidden></p>
                                         <p><input type="hidden" placeholder=""name="phone" hidden></p>
@@ -279,7 +321,7 @@ Quản lý đơn hàng
                                         <input type="hidden" placeholder="" name="total" value="" hidden>
                                         <select name="status" id="select_cateid"autofocus>
                                             @foreach (App\Enums\StatusType::toSelectArray() as $item => $value)
-                                                <option value="{{ $item}}">{{ $value }}</option>
+                                                <option value="{{ $item }}">{{ $value }}</option>
                                             @endforeach
                                         </select>
                                         <!--end::Input group-->
@@ -318,6 +360,14 @@ Quản lý đơn hàng
     </div>
 @endsection
 @push('jscustom')
+    <script>
+        $('#select_product').change(function() {
+            var element = $(this).find('option:selected');
+            var desc = element.data("price");
+            $("#total").val(desc);
+        });
+        $('quantity').val(1);
+    </script>
     <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
     @include('pages.order.js')
 @endpush

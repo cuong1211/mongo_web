@@ -55,7 +55,10 @@
                     return data;
                 }
             },
-            {data: 'status', name: 'status'},
+            {
+                data: 'status',
+                name: 'status'
+            },
             {
                 data: null,
                 className: 'text-end',
@@ -83,30 +86,54 @@
                 }
             }
         ],
-        columnDefs: [
-            {
-                targets: 6,
-                render: function (data, type, full, meta) {
-                    var status = {
-                        0: {'title': 'Đã hủy', 'class': ' label-light-danger'},
-                        1: {'title': 'Đã xử lý', 'class': ' label-light-success'},
-                        2: {'title': 'Đang xử lý', 'class': 'label-light-primary'},
-                    };
-                    if (typeof status[data] === 'undefined') {
-                        return data;
-                    }
-                    return '<span class="label label-lg font-weight-bold' + status[data].class + ' label-inline">' + status[data].title + '</span>';
-                },
+        columnDefs: [{
+            targets: 6,
+            render: function(data, type, full, meta) {
+                var status = {
+                    0: {
+                        'title': 'Đã hủy',
+                        'class': ' label-light-danger'
+                    },
+                    1: {
+                        'title': 'Đã xử lý',
+                        'class': ' label-light-success'
+                    },
+                    2: {
+                        'title': 'Đang xử lý',
+                        'class': 'label-light-primary'
+                    },
+                };
+                if (typeof status[data] === 'undefined') {
+                    return data;
+                }
+                return '<span class="label label-lg font-weight-bold' + status[data].class +
+                    ' label-inline">' + status[data].title + '</span>';
             },
-        ],
+        }, ],
     });
     dt.on('draw', function() {
         KTMenu.createInstances();
     });
-    $(document).on('click','.btn-status',function(e){
+    $('.btn-close').on('click', function() {
+        form_reset();
+        $('#kt_modal_add_customer').modal('hide');
+        $('#kt_modal_status').modal('hide');
+    });
+    $(' #kt_modal_add_customer_cancel').on('click', function() {
+        form_reset();
+    });
+
+    function form_reset() {
+        $("#kt_modal_add_customer").modal({
+            'backdrop': 'static',
+            'keyboard': false
+        });
+        $("#kt_modal_add_customer_form").trigger("reset");
+
+    }
+    $(document).on('click', '.btn-status', function(e) {
         e.preventDefault();
         var data = $(this).data('data');
-        console.log(data);
         let modal = $('#kt_modal_status_form');
         modal.find('input[name="id"]').val(data._id);
         modal.find('input[name="name"]').val(data.name);
@@ -125,7 +152,7 @@
         e.preventDefault();
         let data = $(this).serialize(),
             id = $('form#kt_modal_status_form input[name=id]').val();
-            console.log(id);
+        console.log(id);
         $.ajax({
             url: "{{ route('order.store') }}" + '/' + id,
             headers: {
@@ -134,8 +161,8 @@
             type: 'PUT',
             data: data,
             success: function(data) {
+                notification(data.type, data.title, data.content);
                 if (data.type == 'success') {
-                    alert(data.title);
                     dt.ajax.reload(null, false);
                     $('#kt_modal_status_form').trigger('reset');
                     $('#kt_modal_status').modal('hide');
@@ -149,16 +176,25 @@
     $(document).on('click', '.btn-edit', function(e) {
         console.log('edit')
         e.preventDefault();
+        form_reset();
         let data = $(this).data('data');
         let modal = $('#kt_modal_add_customer_form');
         modal.find('.modal-title').text('Sửa thông tin đơn hàng');
-        modal.find('input[name=id]').val(data._id);
-        modal.find('input[name=name]').val(data.name);
+        modal.find('input[name="id"]').val(data._id);
+        modal.find('input[name="name"]').val(data.name);
+        modal.find('input[name="address"]').val(data.address);
+        modal.find('input[name="phone"]').val(data.phone);
+        modal.find('input[name="product_id"]').val(data.product_id);
+        modal.find('input[name="total"]').val(data.total);
+        modal.find('input[name="date"]').val(data.date);
+        modal.find('input[name="note"]').val(data.note);
+        modal.find('select[name="status"]').val(data.status);
         // $('#kt_modal_add_customer_form').modal('show'); 
     });
     $(document).on('click', '.btn-add', function(e) {
         console.log('add')
         e.preventDefault();
+        form_reset();
         let modal = $('#kt_modal_add_customer_form');
         modal.find('.modal-title').text('Thêm mới đơn hàng');
         modal.find('input[name=id]').val('');
@@ -184,15 +220,19 @@
             type: type,
             data: data,
             success: function(data) {
+                notification(data.type, data.title, data.content);
                 if (data.type == 'success') {
-                    alert(data.title);
                     dt.ajax.reload(null, false);
                     $('#kt_modal_add_customer_form').trigger('reset');
                     $('#kt_modal_add_customer').modal('hide');
                 }
             },
             error: function(data) {
-                console.log('error');
+                let errors = data.responseJSON.errors;
+                console.log(errors);
+                $.each(errors, function(key, value) {
+                    notification('error', 'Error', value);
+                });
             }
         });
     });
@@ -207,15 +247,17 @@
             },
             type: 'DELETE',
             success: function(data) {
+                notification(data.type, data.title, data.content);
                 if (data.type == 'success') {
-                    alert(data.title);
                     dt.ajax.reload(null, false);
                 }
             },
             error: function(data) {
-                console.log('error');
+                let errors = data.responseJSON.errors;
+                $.each(errors, function(key, value) {
+                    notification('error', 'Error', value);
+                });
             }
         });
     });
-
 </script>

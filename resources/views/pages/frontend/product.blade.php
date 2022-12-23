@@ -7,9 +7,11 @@
                     <span class="close-btn"><i class="fas fa-window-close"></i></span>
                     <div class="search-bar">
                         <div class="search-bar-tablecell">
-                            <h3>Search For:</h3>
-                            <input type="text" placeholder="Keywords">
-                            <button type="submit">Search <i class="fas fa-search"></i></button>
+                            <form method="get" action="{{ route('frontend.search') }}">
+                                <h3>Tìm kiếm sản phẩm:</h3>
+                                <input type="text" name="query"placeholder="Tên sản phẩm">
+                                <button type="submit">Tìm kiếm <i class="fas fa-search"></i></button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -24,8 +26,12 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 text-center">
                     <div class="breadcrumb-text">
-                        <p>Fresh and Organic</p>
-                        <h1>Shop</h1>
+                        @if ($product_search != null)
+                            <p class="subtitle">Kết quả tìm kiếm cho: </p><span style="color: white; font-size:3rem">{{ $search }}</span>
+                        @else
+                            <p class="subtitle">Chào mừng bạn đến với</p>
+                            <span style="color: white; font-size:3rem">SẢN PHẨM CỦA CHÚNG TÔI</span>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -34,34 +40,50 @@
     <!-- end breadcrumb section -->
     <div class="product-section mt-150 mb-150">
         <div class="container">
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="product-filters">
-                        <ul>
-                            <li class="active" data-filter="*">All</li>
-                            <li data-filter=".strawberry">Strawberry</li>
-                            <li data-filter=".berry">Berry</li>
-                            <li data-filter=".lemon">Lemon</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row product-lists">
-                @foreach ($product as $item)
-                    <div class="col-lg-4 col-md-6 text-center strawberry">
-                        <div class="single-product-item">
-                            <div class="product-image">
-                                <a href="single-product.html"><img src="{{ asset('images/' . $item->img) }}"
-                                        alt="product"></a>
-                            </div>
-                            <h3>{{ $item->name }}</h3>
-                            <a href="{{ route('cart.checkout',['id'=>$item->id]) }}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add
-                                to Cart</a>
+            @if ($product_search != null)
+            @else
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="product-filters">
+                            <ul>
+                                <li class="active" data-filter="*">Tất cả</li>
+                                @foreach ($cate as $item)
+                                    <li data-filter=".{{ $item->slug }}">{{ $item->name }}</li>
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
-                @endforeach
+                </div>
+            @endif
+
+            <div class="row product-lists">
+                @if ($product_search != null)
+                    @foreach ($product_search as $item)
+                        <div class="col-lg-4 col-md-6 text-center {{ $item->category->slug }}">
+                            <div class="single-product-item">
+                                <div class="product-image">
+                                    <span><img src="{{ asset('images/' . $item->img) }}" alt="product"></span>
+                                </div>
+                                <h3>{{ $item->name }}</h3>
+                                <a href="{{ route('cart.checkout', ['id' => $item->id]) }}" class="cart-btn"><i
+                                        class="fas fa-shopping-cart"></i> Đặt hàng</a>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    @foreach ($product as $item)
+                        <div class="col-lg-4 col-md-6 text-center {{ $item->category->slug }}">
+                            <div class="single-product-item">
+                                <div class="product-image">
+                                    <span><img src="{{ asset('images/' . $item->img) }}" alt="product"></span>
+                                </div>
+                                <h3>{{ $item->name }}</h3>
+                                <a href="{{ route('cart.checkout', ['id' => $item->id]) }}" class="cart-btn"><i
+                                        class="fas fa-shopping-cart"></i> Đặt hàng</a>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
             </div>
 
             <div class="row">

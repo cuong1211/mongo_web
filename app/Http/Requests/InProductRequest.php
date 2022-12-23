@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+
 
 class InProductRequest extends FormRequest
 {
@@ -23,22 +26,50 @@ class InProductRequest extends FormRequest
      */
     public function rules()
     {
-        return ['name' => 'min:3|max:50'] + ($this->isMethod('POST') ? $this->store() : $this->update());
+        $arr = explode('@', $this->route()->getActionName());
+        $action = $arr[1];
+        switch ($action) {
+            case 'store': {
+                return [
+                    'product_id' => 'required',
+                    'company_id' => 'required',
+                    'quantity' => 'required',
+                    'total' => 'nullable',
+                    ];
+                }
+            case 'update': {
+                return [
+                    'product_id' => 'required',
+                    'company_id' => 'required',
+                    'quantity' => 'required',
+                    'total' => 'nullable',
+                ];
+                }
+            default:
+                break;
+        }
     }
-    protected function store()
+    
+    public function messages()
     {
         return [
-        'product_id' => 'required',
-        'company_id' => 'required',
-        'quantity' => 'required',
-        'total' => 'required',
+            'product_id.required' => 'Vui lòng chọn sản phẩm',
+            'company_id.required' => 'Vui lòng chọn công ty',
+            'quantity.required' => 'Vui lòng nhập số lượng',
         ];
     }
+    protected function failedValidation(Validator $validator)
+    {
 
-    protected function update()
-    {
-        return [
-        'name' => 'required|unique:in_products|max:255',
-        ];
+        $errors = $validator->errors()->all();
+        throw new HttpResponseException(
+            response()->json(
+                [
+                    'type' => res_type('error'),
+                    'title' => res_title('validate_error'),
+                    'content' => $errors,
+                ],
+            )
+        );
     }
 }

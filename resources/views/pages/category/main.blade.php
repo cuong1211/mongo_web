@@ -221,7 +221,6 @@ Quản lý mặt hàng
                                         data-kt-scroll-wrappers="#kt_modal_add_customer_scroll"
                                         data-kt-scroll-offset="300px">
                                         <input type="hidden" name="id" value="">
-                                        <input type="hidden" name="orderId" value="">
                                         <!--begin::Input group-->
                                         <div class="fv-row mb-7">
                                             <!--begin::Label-->
@@ -230,6 +229,15 @@ Quản lý mặt hàng
                                             <!--begin::Input-->
                                             <input type="text" class="form-control form-control-solid" placeholder=""
                                                 name="name" />
+                                            <!--end::Input-->
+                                        </div>
+                                        <div class="fv-row mb-7">
+                                            <!--begin::Label-->
+                                            <label class="required fs-6 fw-bold mb-2">Tên viết tắt</label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="text" class="form-control form-control-solid" placeholder=""
+                                                name="slug" />
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
