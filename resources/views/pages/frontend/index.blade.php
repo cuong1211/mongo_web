@@ -197,25 +197,10 @@
                     <div class="testimonial-sliders">
                         <div class="single-testimonial-slider">
                             <div class="client-avater">
-                                <img src="assets/img/avaters/avatar1.png" alt="">
+                                <img src="{{ asset('images/ceo/ninh.jpg')}}" alt="">
                             </div>
                             <div class="client-meta">
-                                <h3>Huy Smile<span>Chủ cửa hàng</span></h3>
-                                <p class="testimonial-body">
-                                    " Với chúng ta, ngày sinh nhật là một ngày trọng đại vì vậy chúng tôi luôn muốn đem đến
-                                    cho mọi người một ngày sinh nhật tuyệt vời nhất"
-                                </p>
-                                <div class="last-icon">
-                                    <i class="fas fa-quote-right"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single-testimonial-slider">
-                            <div class="client-avater">
-                                <img src="assets/img/avaters/avatar2.png" alt="">
-                            </div>
-                            <div class="client-meta">
-                                <h3>Hà Văn Ninh<span>Đồng sáng lập cửa hàng</span></h3>
+                                <h3>Hà Văn Ninh<span>Founder</span></h3>
                                 <p class="testimonial-body">
                                     " Độ uy tín và dịch vụ là nòng cốt của cửa hàng, chúng tôi luôn muốn đó là điểm mạnh để
                                     mọi người tin tưởng vào của hàng của chúng tôi "
@@ -227,10 +212,26 @@
                         </div>
                         <div class="single-testimonial-slider">
                             <div class="client-avater">
-                                <img src="assets/img/avaters/avatar3.png" alt="">
+                                <img src="{{ asset('images/ceo/huy smile.jpg')}}" alt="" style="vertical-align: middle;width: 100px;height: 100px;border-radius: 50%;">
                             </div>
                             <div class="client-meta">
-                                <h3>Thái Văn Cường <span>Đồng sáng lập cửa hàng</span></h3>
+                                <h3>Huy Smile<span>Co-Founder, Chiến thần review, Tiktoker số 1 thế giới</span></h3>
+                                <p class="testimonial-body">
+                                    " Với chúng ta, ngày sinh nhật là một ngày trọng đại vì vậy chúng tôi luôn muốn đem đến
+                                    cho mọi người một ngày sinh nhật tuyệt vời nhất"
+                                </p>
+                                <div class="last-icon">
+                                    <i class="fas fa-quote-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="single-testimonial-slider">
+                            <div class="client-avater">
+                                <img src="{{ asset('images/ceo/cuong.jpg')}}" alt="">
+                            </div>
+                            <div class="client-meta">
+                                <h3>Thái Văn Cường <span>CCO</span></h3>
                                 <p class="testimonial-body">
                                     " Ý kiến của tôi như hai người trước "
                                 </p>

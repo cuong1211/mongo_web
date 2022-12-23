@@ -37,7 +37,7 @@ class FrontendController extends Controller
             $search = null;
         }
         $cate = Category::query()->get();
-        $product = Product::query()->get();
+        $product = Product::paginate(9);
         return view('pages.frontend.product', compact('product', 'cate', 'product_search', 'search'));
     }
     public function getDetail($id)
